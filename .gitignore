@@ -1,0 +1,40 @@
+/vendor
+/node_modules
+/public/build
+/public/storage
+/.env
+/.phpunit.cache
+/storage/*.key
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*.log
+.DS_Store
+Thumbs.db
+
+# Excluded project directories
+/Olddata/
+/portal/
+/shop/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated files
+/vendor/
+/node_modules/
+/public/build/
+/public/storage
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+/bootstrap/cache/*.php
+
+# Local editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,135 @@
+Purpose: Build a complete, responsive, production-ready, fully dynamic KELIKA website and custom CMS. Use the approved KELIKA page designs and owner-supplied images as the visual source of truth. This document is the project specification; implement and verify the application in stages.
+1. Fixed project decisions
+•	Hosting: Linux hosting with cPanel.
+•	Backend: PHP 8.3 or higher, using Laravel 13 if compatible with the selected PHP version and host.
+•	Database: MySQL or a supported MariaDB LTS release available on the hosting account.
+•	Frontend: Blade templates, HTML5, CSS3, Bootstrap 5, and JavaScript.
+•	Page editing: Database-driven section-based page builder with controlled reusable section types.
+•	Court booking: Configurable booking buttons/URLs only. No booking engine, availability calendar, court slots, reservations, customer booking accounts, or payment processing in this phase.
+•	Deployment must be compatible with cPanel. Do not require Docker, Kubernetes, or a permanently running Node.js service.
+•	Build and test in verified phases. Provide a full staging preview for owner review before production launch.
+2. Project objective
+Build a custom CMS website, not a static mockup or a set of hardcoded pages. Authorized administrators must be able to edit page content, images, section order, menus, global branding, contact details, SEO fields, and supported content modules without editing PHP source code. Use the owner-provided design references and image lists as the primary design authority. Do not introduce a different visual direction without approval.
+3. Technical architecture
+•	Laravel application with server-rendered Blade templates and a shared public layout plus a separate administration layout.
+•	Use Laravel migrations, Eloquent ORM, validation, authentication, authorization, mail, and file-storage facilities.
+•	Use Bootstrap 5 and maintainable CSS/JavaScript. A frontend asset build may use Node.js during development, but production must not depend on a persistent Node.js process.
+•	Use a relational database with appropriate indexes, unique constraints, relationships, transactions, and safe deletion/archive behavior.
+•	Keep controllers focused. Use models, validation classes, policies, reusable components, and services where they add clarity.
+•	Do not hardcode page content, navigation, contact information, or footer content in templates when these values should be CMS-managed.
+•	Avoid unnecessary dependencies and do not use Docker.
+4. KELIKA brand and design system
+•	Preserve the approved KELIKA logo geometry, proportions, and identity. Do not replace or distort the logo.
+•	Use the approved premium, bright, professional sports-brand direction: white/light backgrounds, deep green primary accent, terracotta, muted gold, and restrained element colors.
+•	Represent the five elements consistently: Earth, Water, Fire, Air, and Space. Element names, descriptions, colors, images, order, and visibility must be editable.
+•	Use generous whitespace, clear typography, professional sports photography, restrained geometric/botanical motifs, and consistent spacing, buttons, cards, and icons.
+•	Avoid clutter, excessive decoration, generic repeated layouts, broken image crops, blurred assets, overlapping sections, and unwanted background bleed between sections.
+•	Use the supplied image for the intended section/page and preserve its intended crop/focal point. Do not crop text or content from adjacent areas of a screenshot into an image.
+•	Make logo variants, site icon, brand colors, approved fonts, and global design tokens configurable within safe limits.
+5. Required public pages
+•	Home: Hero with “PLAY. GROW. BELONG.” direction; brand introduction; five elements; sports; academy; programs; facilities; benefits; verified statistics; events; genuine testimonials where provided; final CTA and footer. Preserve the approved homepage design and do not redesign it without approval.
+•	Academy: Academy introduction; mission, vision, values; coaching approach; kids, youth, performance and adult programs; facilities; five-elements approach; join CTA.
+•	Sports: Distinct editorial/directory layout, not a copy of the homepage; sports managed in the CMS; separate imagery, descriptions and benefits; badminton, football, cricket and future sports as confirmed; sport enquiry CTA.
+•	Programs: Kids Program (ages 5–12), Youth Development (13–18), Performance Training, Adult Coaching; curriculum, progression stages, group/individual/weekend options where confirmed; enquiry CTAs.
+•	Facilities: Courts, flooring, equipment, lighting, training zones, lounge, changing rooms, showers, pro shop, parking, café, viewing area and multipurpose spaces only where confirmed.
+•	Events: Featured and upcoming events, tournaments, camps, workshops, community events, dates, venue, images, details, optional external registration URL, gallery and archive states.
+•	About: Brand story, mission, vision, values, five-elements philosophy, community, verified statistics and approved coach profiles.
+•	Contact: Contact form, confirmed contact details, location/map area, quick enquiries, FAQs and CTA.
+Contact number currently specified by the owner: 7874028876. Other contact details, email addresses, postal address, map location, hours, event dates, statistics, coaches, testimonials, facility claims and prices must be confirmed before being treated as real public content. Do not invent or silently publish them.
+6. Secure administration panel
+•	Provide secure admin login/logout, password reset via configured email, user management, and role-based permissions.
+•	Include at least Administrator and Editor roles. Enforce permissions on every protected route and action.
+•	Dashboard should show real counts for pages, drafts, published pages, enquiries, upcoming events, and recent edits where implemented.
+•	Page management: create/edit, title, slug, template, SEO fields, menu visibility, draft, preview, publish, unpublish, reorder sections, and safe deletion/archive.
+•	Prevent duplicate slugs and handle URL changes through redirects where appropriate.
+•	Provide clear validation messages and save/publish feedback.
+7. Section-based page builder — core requirement
+•	Administrators can add, edit, duplicate, hide/show, delete, and reorder sections; edit text, images, alt text, buttons, destinations, and supported layout/color settings; save drafts; preview; and publish.
+•	Store page sections and their order in the database. Store configuration in a structured format such as JSON and validate every section type and supported setting.
+•	Use a whitelist of section types and a defined schema, editor UI, validator, and frontend renderer for each type.
+•	Never execute stored PHP or JavaScript. Escape ordinary text and sanitize rich-text content. Do not render arbitrary administrator HTML without an explicit safe sanitization strategy.
+•	Initial section library: hero/banner; image/text split; rich text; card grid; sports directory; program listing; facilities showcase; feature/icon list; five-elements section; statistics; coach/team profiles; event listing; gallery; genuine testimonials; FAQ accordion; CTA/banner; contact details; contact form; map/embed; divider/spacer.
+•	Draft previews must be restricted to authorized users. Public visitors must only see published content. Draft edits must not unexpectedly alter live pages.
+•	Keep the KELIKA visual system consistent; this is a controlled section builder, not an unrestricted free-form drag-and-drop editor.
+8. Media library
+•	Manage logos, hero images, sports photography, programs, facilities, events, galleries, icons, favicon, and social-sharing images.
+•	Upload, browse, search, organize, select, replace, preview, and edit filenames/alt text.
+•	Validate file types and sizes; normalize filenames; prevent executable uploads; store user media separately from protected application files.
+•	Warn before deleting assets referenced by published content. Identify unused assets where practical.
+•	Support responsive image variants and desktop/mobile variants where appropriate. Use sensible image sizes, focal points, and object positioning.
+9. Global settings, menus, and reusable components
+•	Global settings: site name/tagline, logo variants, favicon, social image, brand colors, five-element colors, approved font choices, button styles, contact details, opening hours, social links, booking URL, and CTA labels.
+•	Menu management: main navigation, footer navigation, dropdowns, labels, internal/external links, ordering, visibility, and optional CTA.
+•	Header, footer, buttons, breadcrumbs, cards, alerts, and shared layout components must be reusable and consistently rendered.
+•	Changing a global contact number, logo, menu label, or footer setting must update all relevant occurrences without editing templates.
+10. Dynamic content modules
+•	Database-managed modules as applicable: sports, programs, facilities, events, coaches, FAQs, galleries, and testimonials.
+•	Each module should support create/edit, publish/unpublish, ordering, image selection, search/filter in admin, safe archive/delete behavior, and SEO fields when the item has a public detail URL.
+•	Do not fabricate statistics, coach credentials, testimonials, awards, facility claims, events, dates, prices, or partnerships.
+•	Provide safe initial seed data for the page structure. Clearly mark any sample content and replace it with owner-approved content before launch.
+11. Contact forms and enquiries
+•	Contact form fields: name, email, optional phone, enquiry category, message, and consent checkbox where required.
+•	Use server-side validation, CSRF protection, spam protection such as a honeypot and rate limiting, and clear success/error feedback.
+•	Store enquiries in the database and provide admin search/filter, detail view, statuses (new/in progress/resolved), optional internal notes, and CSV export.
+•	Send email notifications through configurable SMTP settings. Do not hardcode unverified recipient addresses or expose credentials.
+•	Keep enquiry records private and apply an owner-approved retention/deletion policy.
+12. Booking links only
+•	Provide a configurable global booking URL and optional sport/program-specific URLs.
+•	Make button text, URL, enabled state, and external-link behavior editable.
+•	Provide a safe fallback when no URL is configured.
+•	Do not implement booking calendars, court availability, time slots, reservations, customer booking accounts, payment processing, refunds, booking notifications, or booking administration in this phase.
+•	Structure the code so a future booking system can be integrated without rebuilding public page layouts.
+13. SEO
+•	Database-managed SEO title, meta description, canonical URL, robots settings, Open Graph title/description/image, and social metadata.
+•	Clean unique URLs, editable slugs, XML sitemap, robots.txt, breadcrumbs where appropriate, semantic headings, descriptive alt text, custom 404, and redirects for changed URLs.
+•	Use structured data only when supported by genuine, verified content.
+•	Exclude drafts and unpublished items from public pages and the sitemap.
+14. Database and data integrity
+•	Expected entities: users/roles/permissions, pages, page sections, menus/menu items, global settings, media assets, sports, programs, facilities where separately managed, events, coaches, FAQs, galleries, testimonials, enquiries, redirects, and revisions where implemented.
+•	Use migrations, appropriate indexes, foreign keys where suitable, unique slugs, transactions for related writes, and documented archival/deletion behavior.
+•	Validate structured section data and use consistent date/time handling.
+•	Make initial setup reproducible using documented migration and seeding commands.
+15. Security, accessibility, and performance
+•	Security: CSRF, server-side validation, output escaping, rich-text sanitization, ORM/parameterized database access, authorization, password hashing, secure sessions, login/form rate limiting, upload validation, path traversal protection, safe redirects, environment-based secrets, production debug disabled, safe file permissions, and non-sensitive error logging.
+•	Accessibility: semantic HTML, keyboard-accessible controls, visible focus, labeled forms, useful validation messages, sufficient contrast, alt text, correct heading hierarchy, and reduced-motion support where appropriate.
+•	Responsive testing: desktop, laptop, tablet, and mobile. Prevent horizontal overflow, overlapping content, broken navigation, and clipped sections.
+•	Performance: optimize images, use responsive variants, lazy-load below-the-fold images when appropriate, version/minify assets, cache suitable public resources, avoid N+1 queries, and paginate large admin listings.
+•	Review dependencies for security issues before launch. Do not invent cryptographic mechanisms; use framework-supported security facilities.
+16. cPanel deployment and handover
+•	Document PHP version/extensions, Composer dependencies, database setup, environment variables, migrations, administrator creation, document-root configuration, storage permissions, SSL, SMTP, supported cache/optimization commands, backups, restoration, logs, and troubleshooting.
+•	Keep application code, configuration, and private storage outside the public document root where hosting permits. If hosting requires another layout, document and secure it.
+•	Never expose .env, private backups, source secrets, or the entire Laravel project directory publicly.
+•	Do not run destructive production migrations or overwrite a live site without a backup and explicit approval.
+•	Deliver source code, migrations, seeders, dependency lock file, .env.example without secrets, installation/deployment guide, CMS user guide, backup/restore guide, test report, known limitations, and secure initial-admin instructions.
+17. Testing and acceptance criteria
+•	Test login/logout, roles, page CRUD, slugs, section add/edit/duplicate/delete/hide/reorder, drafts, previews, publishing, media upload/selection, menus, global settings, content modules, enquiry storage/email, SEO updates, booking links, redirects, and unauthorized access.
+•	Verify all eight pages render saved database content and that changing a logo, image, menu label, contact setting, or section order updates the public site correctly.
+•	Verify drafts are not public, unpublished content is excluded from the sitemap, and empty modules do not break pages.
+•	Test CSRF, validation, escaping, upload restrictions, admin permissions, login rate limits, enquiry privacy, and production error handling.
+•	Visually compare all pages with owner-provided designs and page-specific image lists at desktop/tablet/mobile widths. Check image crops, typography, spacing, logo proportions, section boundaries, links, forms, and mobile overflow.
+•	A homepage loading successfully is not proof of completion. Report test results and fix defects before declaring each phase complete.
+18. Project implementation plan
+1.	Phase 1 — Foundation: Confirm actual cPanel PHP/database versions and extensions; create Laravel project; configure database; establish design tokens, shared layouts, authentication, roles, migrations, seeders, and test setup. Gate: application runs and admin/database access work.
+2.	Phase 2 — CMS core: Build page CRUD, slugs, section storage/renderers, section editor, draft/preview/publish flow, and initial templates. Gate: administrator can create and update a page without source-code changes.
+3.	Phase 3 — Shared controls: Build media library, menus, global settings, theme settings, header/footer, reusable components. Gate: global changes propagate consistently.
+4.	Phase 4 — Public pages: Implement Home, Academy, Sports, Programs, Facilities, Events, About, and Contact using approved designs and owner-supplied assets. Gate: each page is responsive and renders database-driven content.
+5.	Phase 5 — Modules and enquiries: Implement sports/program/facility/event management and applicable coaches, FAQs, galleries, testimonials; contact form, enquiry admin, SMTP; configurable booking links. Gate: end-to-end workflows pass.
+6.	Phase 6 — SEO and hardening: Implement SEO, sitemap, redirects, security review, accessibility and performance checks. Gate: required tests pass and remaining limitations are documented.
+7.	Phase 7 — Staging and launch: Deploy staging on cPanel-compatible hosting; provide preview and secure admin access; collect owner feedback; correct issues; back up; deploy production only after explicit approval; verify live site.
+19. Mandatory reporting after each phase
+8.	What was completed.
+9.	Files and database changes made.
+10.	Tests run and actual results.
+11.	Known defects, blockers, or dependencies.
+12.	Exact next steps.
+20. Definition of done
+•	All eight pages are implemented and visually reviewed.
+•	CMS is database-driven and the section builder works.
+•	Authorized administrators can manage pages, assets, menus, global settings, and supported content modules.
+•	Contact enquiries are stored and manageable.
+•	Booking buttons are configurable links only.
+•	SEO, security, responsive behavior, and core performance have been tested.
+•	The staging preview and documentation are delivered.
+•	The owner has reviewed the complete site and approved the production launch.
+21. Instructions to the developer or coding agent
+Treat this document, the owner’s supplied page designs, the page-by-page image list, and later explicit owner decisions as the project source of truth. Do not silently substitute content or assets. Do not redo the approved homepage concept unless specifically requested. Work phase by phase, run tests, fix errors, and do not claim completion without evidence. If a required detail is missing, identify it as a question or placeholder rather than inventing an answer. Begin with Phase 1 only after checking the actual hosting environment and project workspace.

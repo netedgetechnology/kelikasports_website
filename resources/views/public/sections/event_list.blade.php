@@ -1,0 +1,23 @@
+@php($d = $section->data ?? [])
+<section class="section-pad" id="upcoming-events">
+    <div class="container">
+        <p class="eyebrow">{{ $d['eyebrow'] ?? 'Upcoming Events' }}</p>
+        <h2 class="section-title mb-4">@foreach(explode('|', (string)($d['title'] ?? 'Upcoming Events')) as $line)<span class="{{ $loop->index === 1 ? 'accent-terracotta' : ($loop->index === 2 ? 'accent-gold' : '') }}">{{ $line }}</span>@if(!$loop->last)<br>@endif @endforeach</h2>
+        @if($featuredEvent)
+            <article class="featured-event mb-4">
+                <div class="row g-0 align-items-stretch">
+                    <div class="col-lg-5 featured-event-copy"><p class="eyebrow text-white-50">Featured Event</p><h3 class="h2 fw-bold">{{ $featuredEvent->title }}</h3><p>{{ $featuredEvent->data['summary'] ?? $featuredEvent->data['description'] ?? '' }}</p><div class="small mb-2">{{ $featuredEvent->starts_at?->format('d M Y') ?? 'Date to be announced' }}</div>@if(!empty($featuredEvent->data['location']))<div class="small mb-3">⌖ {{ $featuredEvent->data['location'] }}</div>@endif @if(!empty($featuredEvent->data['registration_url']))<a class="btn btn-warning fw-bold" href="{{ $featuredEvent->data['registration_url'] }}" target="_blank" rel="noopener noreferrer">Register / Details →</a>@elseif(!empty($featuredEvent->data['url']))<a class="btn btn-warning fw-bold" href="{{ $featuredEvent->data['url'] }}">View Details →</a>@endif</div>
+                    <div class="col-lg-7">@if(!empty($featuredEvent->data['image']))<img class="featured-event-image" src="{{ str_starts_with($featuredEvent->data['image'],'http') || str_starts_with($featuredEvent->data['image'],'/') ? $featuredEvent->data['image'] : Storage::disk('public')->url($featuredEvent->data['image']) }}" alt="{{ $featuredEvent->data['image_alt'] ?? $featuredEvent->title }}" loading="lazy">@elseif($preview ?? false)<div class="featured-event-image image-placeholder">Add a verified event image</div>@else<div class="featured-event-image image-placeholder" aria-hidden="true"></div>@endif</div>
+                </div>
+            </article>
+        @endif
+        <div class="row g-3">
+            @forelse($upcomingEvents as $event)
+                <div class="col-md-6 col-lg-4"><article class="soft-card event-card h-100">@if(!empty($event->data['image']))<img class="event-card-image" src="{{ str_starts_with($event->data['image'],'http') || str_starts_with($event->data['image'],'/') ? $event->data['image'] : Storage::disk('public')->url($event->data['image']) }}" alt="{{ $event->data['image_alt'] ?? $event->title }}" loading="lazy">@elseif($preview ?? false)<div class="event-card-image image-placeholder">Add event image</div>@endif<div class="card-body"><p class="eyebrow">{{ $event->starts_at?->format('d M Y') ?? 'Date to be announced' }}</p><h3 class="h5 fw-bold">{{ $event->title }}</h3><p class="small text-secondary">{{ $event->data['summary'] ?? $event->data['description'] ?? '' }}</p>@if(!empty($event->data['location']))<p class="small mb-3">⌖ {{ $event->data['location'] }}</p>@endif @if(!empty($event->data['registration_url']))<a class="fw-bold text-decoration-none" href="{{ $event->data['registration_url'] }}" target="_blank" rel="noopener noreferrer">Register →</a>@elseif(!empty($event->data['url']))<a class="fw-bold text-decoration-none" href="{{ $event->data['url'] }}">View details →</a>@endif</div></article></div>
+            @empty
+                <div class="col-12"><div class="empty-state">New events and activities will be announced here. Please contact KELIKA for current information.</div></div>
+            @endforelse
+        </div>
+        @if(!empty($d['button_label']))<a class="btn btn-kelika mt-4" href="{{ \App\Support\SafeUrl::isSafe($d['button_url'] ?? null) && !empty($d['button_url']) ? $d['button_url'] : route('page.show',['slug'=>'events']) }}">{{ $d['button_label'] }} →</a>@endif
+    </div>
+</section>

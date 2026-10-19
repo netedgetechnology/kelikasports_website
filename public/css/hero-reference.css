@@ -1,0 +1,391 @@
+/* KELIKA — Clean Signature Athlete Hero */
+:root {
+    --kelika-cream: #fffdf8;
+    --kelika-champagne: #f5e5c9;
+    --kelika-green: #075748;
+    --kelika-deep-green: #064b3e;
+    --kelika-terracotta: #d96f52;
+    --kelika-gold: #dfa94f;
+    --kelika-text: #173e36;
+}
+
+.hero-reference {
+    position: relative !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    background: var(--kelika-cream) !important;
+    color: var(--kelika-text);
+}
+
+.hero-reference > .container-fluid {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.hero-reference .row {
+    display: grid !important;
+    grid-template-columns: 43% 57% !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    height: calc(100svh - 82px) !important;
+    min-height: 610px !important;
+    max-height: 820px !important;
+    margin: 0 !important;
+    position: relative !important;
+}
+
+/* LEFT: clean cream content column */
+.hero-reference .hero-copy {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 42px 30px 28px clamp(34px, 5.8vw, 100px) !important;
+    position: relative !important;
+    z-index: 2 !important;
+    background: var(--kelika-cream) !important;
+}
+
+.hero-reference .eyebrow {
+    margin: 0 0 22px !important;
+    color: #647c73 !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: .19em !important;
+    line-height: 1.5 !important;
+}
+
+.hero-reference .display-title {
+    margin: 0 !important;
+    color: var(--kelika-green) !important;
+    font-size: clamp(48px, 5.2vw, 82px) !important;
+    font-weight: 900 !important;
+    line-height: .91 !important;
+    letter-spacing: -.055em !important;
+}
+
+.hero-reference .display-title span {
+    display: block !important;
+    white-space: nowrap !important;
+}
+
+.hero-reference .display-title .accent-terracotta {
+    color: var(--kelika-terracotta) !important;
+}
+
+.hero-reference .display-title .accent-gold {
+    color: var(--kelika-gold) !important;
+}
+
+.hero-reference .hero-copy .lead {
+    max-width: 490px !important;
+    margin: 20px 0 22px !important;
+    color: #687e77 !important;
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+}
+
+.hero-reference .hero-actions {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+    width: 100% !important;
+}
+
+.hero-reference .hero-actions .btn {
+    min-height: 54px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    padding: 15px 22px !important;
+    border-radius: 2px !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: .045em !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+}
+
+.hero-reference .hero-actions .btn-kelika {
+    color: #fff !important;
+    background: var(--kelika-green) !important;
+    border: 1px solid var(--kelika-green) !important;
+}
+
+.hero-reference .hero-actions .btn-kelika-outline {
+    color: var(--kelika-green) !important;
+    background: transparent !important;
+    border: 1px solid #7baca0 !important;
+}
+
+/* Four compact benefits at the foot of the text column */
+.hero-reference .hero-features {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    width: calc(100% + 20px) !important;
+    margin-top: auto !important;
+    padding: 24px 0 0 !important;
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+.hero-reference .hero-features > * {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+}
+
+/* RIGHT: image fills its rectangular column */
+.hero-reference .hero-visual {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    isolation: isolate !important;
+    background: #e9e2d5 !important;
+}
+
+.hero-reference .hero-visual picture {
+    position: absolute !important;
+    inset: 0 21% 0 0 !important;
+    display: block !important;
+    width: auto !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    overflow: hidden !important;
+}
+
+.hero-reference .hero-visual .hero-image {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 28% !important;
+    clip-path: none !important;
+    border-radius: 0 !important;
+}
+
+/* Straight-edged champagne message panel */
+.hero-reference .hero-visual::before {
+    content: none !important;
+    display: none !important;
+}
+
+.hero-reference .hero-visual::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    inset: 0 0 0 auto !important;
+    width: 21% !important;
+    height: 100% !important;
+    background: var(--kelika-champagne) !important;
+    clip-path: none !important;
+    border: 0 !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+}
+
+.hero-reference .hero-side-message {
+    position: absolute !important;
+    z-index: 3 !important;
+    top: 50% !important;
+    right: 0 !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 21% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 24px 10px !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    color: var(--kelika-green) !important;
+    background: transparent !important;
+}
+
+.hero-reference .hero-side-message > span {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    color: var(--kelika-green) !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: clamp(23px, 2.4vw, 39px) !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+    line-height: 1.12 !important;
+    letter-spacing: -.045em !important;
+}
+
+.hero-reference .hero-side-values {
+    margin-top: 30px !important;
+    color: var(--kelika-green) !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    line-height: 2.25 !important;
+    letter-spacing: .13em !important;
+    text-align: center !important;
+}
+
+.hero-reference .hero-side-message > i {
+    display: block !important;
+    width: 42px !important;
+    height: 3px !important;
+    margin: 22px auto 0 !important;
+    background: var(--kelika-gold) !important;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .hero-reference .row {
+        grid-template-columns: 44% 56% !important;
+        height: calc(100svh - 78px) !important;
+        min-height: 590px !important;
+    }
+
+    .hero-reference .hero-copy {
+        padding-left: 32px !important;
+        padding-right: 20px !important;
+    }
+
+    .hero-reference .display-title {
+        font-size: clamp(46px, 5.1vw, 64px) !important;
+    }
+
+    .hero-reference .hero-copy .lead {
+        font-size: 14px !important;
+    }
+
+    .hero-reference .hero-features {
+        flex-wrap: wrap !important;
+        row-gap: 12px !important;
+    }
+
+    .hero-reference .hero-side-message > span {
+        font-size: clamp(20px, 2.5vw, 30px) !important;
+    }
+
+    .hero-reference .hero-side-values {
+        margin-top: 20px !important;
+        font-size: 9px !important;
+    }
+}
+
+/* Mobile: keep all content readable and avoid squeezed columns */
+@media (max-width: 767px) {
+    .hero-reference {
+        overflow: visible !important;
+    }
+
+    .hero-reference .row {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+    }
+
+    .hero-reference .hero-copy {
+        order: 1 !important;
+        padding: 38px 24px 24px !important;
+    }
+
+    .hero-reference .eyebrow {
+        font-size: 10px !important;
+        margin-bottom: 18px !important;
+    }
+
+    .hero-reference .display-title {
+        font-size: clamp(47px, 13vw, 66px) !important;
+    }
+
+    .hero-reference .hero-copy .lead {
+        font-size: 15px !important;
+        margin: 18px 0 20px !important;
+    }
+
+    .hero-reference .hero-actions {
+        gap: 10px !important;
+    }
+
+    .hero-reference .hero-actions .btn {
+        min-height: 48px !important;
+        padding: 12px 14px !important;
+        font-size: 10px !important;
+    }
+
+    .hero-reference .hero-features {
+        order: 2 !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 14px !important;
+        width: 100% !important;
+        margin-top: 26px !important;
+        padding-top: 0 !important;
+    }
+
+    .hero-reference .hero-features > * {
+        min-width: 0 !important;
+    }
+
+    .hero-reference .hero-visual {
+        order: 2 !important;
+        height: min(92vw, 440px) !important;
+        min-height: 280px !important;
+        flex: none !important;
+    }
+
+    .hero-reference .hero-visual picture {
+        inset: 0 29% 0 0 !important;
+    }
+
+    .hero-reference .hero-visual::after {
+        width: 29% !important;
+    }
+
+    .hero-reference .hero-side-message {
+        width: 29% !important;
+        padding: 12px 5px !important;
+    }
+
+    .hero-reference .hero-side-message > span {
+        font-size: clamp(17px, 5vw, 24px) !important;
+        line-height: 1.15 !important;
+    }
+
+    .hero-reference .hero-side-values {
+        margin-top: 18px !important;
+        font-size: 8px !important;
+        letter-spacing: .08em !important;
+        line-height: 2 !important;
+    }
+
+    .hero-reference .hero-side-message > i {
+        width: 28px !important;
+        margin-top: 14px !important;
+    }
+}

@@ -1,0 +1,40 @@
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php83” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Permit the ACME challenge used for SSL validation.
+    RewriteRule ^\.well-known/acme-challenge/ - [L]
+
+    # Block hidden files, except the .well-known directory.
+    RewriteRule (^|/)\.(?!well-known(?:/|$)) - [F,L,NC]
+
+    # Block private Laravel application directories.
+    RewriteRule ^(app|bootstrap|config|database|docs|resources|routes|tests|vendor|node_modules)(/|$) - [F,L,NC]
+
+    # Block environment files, source manifests, logs, and SQL dumps.
+    RewriteRule ^(\.env($|\.)|artisan$|composer\.(json|lock)$|package(-lock)?\.json$|phpunit\.xml$|vite\.config\.js$) - [F,L,NC]
+    RewriteRule \.(sql|log|bak|old|orig|save)$ - [F,L,NC]
+
+    # Keep Laravel storage files private from direct web access.
+    RewriteRule ^storage(/|$) - [F,L,NC]
+
+    # Forward authorization headers to Laravel.
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN]
+
+    # Serve existing public assets directly; route other requests through Laravel.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>

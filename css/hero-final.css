@@ -1,0 +1,459 @@
+/* KELIKA homepage hero — consolidated reference-inspired layout */
+.hero-redesign {
+    --kh-cream: #fffaf1;
+    --kh-green: #075447;
+    --kh-coral: #df7052;
+    --kh-gold: #dfa94f;
+    --kh-champagne: #f4e1bf;
+    position: relative !important;
+    isolation: isolate !important;
+    display: block !important;
+    width: 100% !important;
+    height: min( calc(100svh - 82px), 832px) !important;
+    min-height: 680px !important;
+    max-height: 900px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: var(--kh-cream) !important;
+    color: var(--kh-green) !important;
+}
+
+.hero-redesign > .container-fluid,
+.hero-redesign .row {
+    position: relative !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.hero-redesign .row {
+    display: block !important;
+}
+
+/* Left editorial panel */
+.hero-redesign .hero-copy {
+    position: relative !important;
+    z-index: 5 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 48% !important;
+    max-width: 790px !important;
+    height: 100% !important;
+    padding: 35px 20px 150px clamp(36px, 5.4vw, 94px) !important;
+    background: transparent !important;
+}
+
+.hero-redesign .eyebrow {
+    margin: 0 0 25px !important;
+    color: #627e75 !important;
+    font-size: clamp(10px, .82vw, 14px) !important;
+    font-weight: 800 !important;
+    letter-spacing: .20em !important;
+    line-height: 1.5 !important;
+    text-transform: uppercase !important;
+}
+
+.hero-redesign .display-title {
+    margin: 0 0 17px !important;
+    color: var(--kh-green) !important;
+    font-size: clamp(54px, 6.2vw, 108px) !important;
+    font-weight: 900 !important;
+    letter-spacing: -.055em !important;
+    line-height: .88 !important;
+    text-transform: uppercase !important;
+}
+
+.hero-redesign .display-title span {
+    display: block !important;
+    white-space: nowrap !important;
+}
+
+.hero-redesign .display-title span:nth-child(1) {
+    color: var(--kh-green) !important;
+}
+.hero-redesign .display-title span:nth-child(2) {
+    color: var(--kh-coral) !important;
+}
+.hero-redesign .display-title span:nth-child(3) {
+    color: var(--kh-gold) !important;
+}
+
+.hero-redesign .hero-copy .lead {
+    max-width: 510px !important;
+    margin: 0 0 24px !important;
+    color: #6b8985 !important;
+    font-size: clamp(15px, 1.2vw, 21px) !important;
+    line-height: 1.5 !important;
+}
+
+.hero-redesign .hero-actions {
+    position: relative !important;
+    z-index: 8 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 18px !important;
+    margin: 0 !important;
+}
+
+.hero-redesign .hero-actions .btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 64px !important;
+    padding: 0 30px !important;
+    border-radius: 3px !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    letter-spacing: .07em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    box-shadow: none !important;
+}
+
+.hero-redesign .hero-actions .btn-kelika {
+    border: 1px solid var(--kh-green) !important;
+    background: var(--kh-green) !important;
+    color: #fff !important;
+}
+.hero-redesign .hero-actions .btn-kelika-outline {
+    border: 1px solid #0a7767 !important;
+    background: var(--kh-cream) !important;
+    color: var(--kh-green) !important;
+}
+
+.hero-redesign .hero-copy::after {
+    content: "" !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 168px !important;
+    height: 6px !important;
+    margin-top: 28px !important;
+    background: linear-gradient(
+        90deg,
+        var(--kh-green) 0 34%,
+        var(--kh-coral) 34% 66%,
+        var(--kh-gold) 66% 100%
+    ) !important;
+}
+
+/* Photo and its independent decorative frame */
+.hero-redesign .hero-visual {
+    position: absolute !important;
+    z-index: 1 !important;
+    inset: 0 0 0 33.2% !important;
+    width: auto !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: var(--kh-champagne) !important;
+    clip-path: none !important;
+}
+
+/* Photo occupies the central area; right panel remains independent. */
+.hero-redesign .hero-visual picture {
+    position: absolute !important;
+    inset: 0 26% 0 0 !important;
+    display: block !important;
+    width: auto !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    background: #164b43 !important;
+}
+
+.hero-redesign .hero-visual .hero-image {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+}
+
+/* Geometric accents are separate from the CMS image. */
+.hero-redesign .hero-visual::before {
+    content: "" !important;
+    position: absolute !important;
+    z-index: 3 !important;
+    inset: 0 auto 0 0 !important;
+    width: 28% !important;
+    height: 72% !important;
+    background: rgba(7, 84, 71, .72) !important;
+    clip-path: polygon(0 0, 100% 0, 34% 100%, 0 76%) !important;
+    pointer-events: none !important;
+}
+
+.hero-redesign .hero-visual::after {
+    content: "" !important;
+    position: absolute !important;
+    z-index: 4 !important;
+    top: 0 !important;
+    right: 26% !important;
+    bottom: 0 !important;
+    width: 11% !important;
+    background: var(--kh-coral) !important;
+    clip-path: polygon(58% 0, 100% 0, 100% 100%, 0 100%) !important;
+    pointer-events: none !important;
+}
+
+/* Champagne panel */
+.hero-redesign .hero-side-message {
+    position: absolute !important;
+    z-index: 6 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 26% !important;
+    min-width: 0 !important;
+    padding: 28px 14px !important;
+    background: var(--kh-champagne) !important;
+    color: var(--kh-green) !important;
+    text-align: center !important;
+}
+
+.hero-redesign .hero-side-message > span {
+    display: block !important;
+    max-width: 100% !important;
+    margin: 0 0 26px !important;
+    color: var(--kh-green) !important;
+    font-family: "Brush Script MT", "Segoe Script", cursive !important;
+    font-size: clamp(30px, 3.05vw, 54px) !important;
+    font-weight: 700 !important;
+    font-style: italic !important;
+    line-height: .98 !important;
+}
+
+.hero-redesign .hero-side-message::before {
+    content: "" !important;
+    order: 2 !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 76px !important;
+    height: 3px !important;
+    margin: 0 0 23px !important;
+    background: var(--kh-gold) !important;
+}
+
+.hero-redesign .hero-side-values {
+    order: 3 !important;
+    color: var(--kh-green) !important;
+    font-size: clamp(11px, .9vw, 15px) !important;
+    font-weight: 900 !important;
+    letter-spacing: .15em !important;
+    line-height: 3.1 !important;
+}
+
+/* Feature strip: fixed to the bottom-left of the hero, never over the buttons. */
+.hero-redesign .hero-features {
+    position: absolute !important;
+    z-index: 9 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    align-items: center !important;
+    width: 58% !important;
+    min-height: 126px !important;
+    margin: 0 !important;
+    padding: 18px 12px 18px clamp(36px, 5.4vw, 94px) !important;
+    background: rgba(255, 250, 241, .97) !important;
+}
+
+.hero-redesign .hero-feature {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+    min-height: 40px !important;
+    padding: 0 10px !important;
+    border-right: 1px solid rgba(223, 169, 79, .55) !important;
+    color: var(--kh-green) !important;
+    font-size: clamp(10px, .8vw, 14px) !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+}
+
+.hero-redesign .hero-feature:last-child {
+    border-right: 0 !important;
+}
+
+.hero-redesign .hero-feature svg {
+    display: block !important;
+    flex: 0 0 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+    fill: none !important;
+    stroke: var(--kh-green) !important;
+    stroke-width: 1.8 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+}
+
+.hero-redesign .hero-feature span {
+    display: block !important;
+    min-width: 0 !important;
+}
+
+/* Desktop widths: keep the message and photograph proportional. */
+@media (min-width: 992px) and (max-width: 1250px) {
+    .hero-redesign {
+        min-height: 650px !important;
+    }
+    .hero-redesign .hero-copy {
+        width: 49% !important;
+        padding-left: 4vw !important;
+        padding-bottom: 140px !important;
+    }
+    .hero-redesign .display-title {
+        font-size: clamp(50px, 6vw, 76px) !important;
+    }
+    .hero-redesign .hero-actions {
+        gap: 10px !important;
+    }
+    .hero-redesign .hero-actions .btn {
+        min-height: 54px !important;
+        padding: 0 16px !important;
+        font-size: 11px !important;
+    }
+    .hero-redesign .hero-features {
+        width: 63% !important;
+        padding-left: 3vw !important;
+    }
+    .hero-redesign .hero-feature {
+        gap: 5px !important;
+        padding: 0 5px !important;
+        font-size: 10px !important;
+    }
+}
+
+/* Tablet and mobile: readable stacked sections, no clipped content. */
+@media (max-width: 991.98px) {
+    .hero-redesign {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: hidden !important;
+    }
+    .hero-redesign > .container-fluid,
+    .hero-redesign .row {
+        height: auto !important;
+    }
+    .hero-redesign .hero-copy {
+        width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 42px 24px 30px !important;
+    }
+    .hero-redesign .eyebrow {
+        margin-bottom: 18px !important;
+    }
+    .hero-redesign .display-title {
+        font-size: clamp(48px, 11vw, 78px) !important;
+    }
+    .hero-redesign .hero-copy .lead {
+        font-size: 16px !important;
+    }
+    .hero-redesign .hero-actions {
+        gap: 10px !important;
+    }
+    .hero-redesign .hero-actions .btn {
+        min-height: 50px !important;
+        padding: 0 16px !important;
+        font-size: 11px !important;
+    }
+    .hero-redesign .hero-copy::after {
+        margin-top: 22px !important;
+    }
+    .hero-redesign .hero-visual {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+    }
+    .hero-redesign .hero-visual picture {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: clamp(280px, 65vw, 470px) !important;
+    }
+    .hero-redesign .hero-visual .hero-image {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .hero-redesign .hero-visual::before,
+    .hero-redesign .hero-visual::after {
+        display: none !important;
+    }
+    .hero-redesign .hero-side-message {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        min-height: 0 !important;
+        padding: 28px 20px !important;
+    }
+    .hero-redesign .hero-side-message > span {
+        font-size: 38px !important;
+        margin-bottom: 18px !important;
+    }
+    .hero-redesign .hero-side-message::before {
+        order: 2 !important;
+        margin-bottom: 10px !important;
+    }
+    .hero-redesign .hero-side-values {
+        line-height: 2.2 !important;
+    }
+    .hero-redesign .hero-features {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        min-height: 0 !important;
+        padding: 18px 12px !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        row-gap: 18px !important;
+    }
+    .hero-redesign .hero-feature {
+        font-size: 12px !important;
+        padding: 0 8px !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero-redesign .hero-copy {
+        padding-inline: 18px !important;
+    }
+    .hero-redesign .display-title {
+        font-size: clamp(43px, 11.5vw, 52px) !important;
+    }
+    .hero-redesign .hero-actions .btn {
+        padding-inline: 12px !important;
+        font-size: 10px !important;
+    }
+    .hero-redesign .hero-feature svg {
+        flex-basis: 26px !important;
+        width: 26px !important;
+        height: 26px !important;
+    }
+}

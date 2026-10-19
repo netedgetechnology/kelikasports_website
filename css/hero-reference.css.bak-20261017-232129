@@ -1,0 +1,522 @@
+/* KELIKA homepage hero — consolidated reference layout */
+.hero-reference {
+    position: relative !important;
+    overflow: hidden !important;
+    background: #fffdf9 !important;
+    color: #064f43;
+}
+
+.hero-reference > .container-fluid {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 0 0 3.7% !important;
+}
+
+.hero-reference .row {
+    display: flex !important;
+    align-items: stretch !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+}
+
+.hero-reference .hero-copy,
+.hero-reference .hero-visual {
+    min-width: 0 !important;
+}
+
+.hero-reference .hero-copy {
+    flex: 0 0 43% !important;
+    max-width: 43% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 5 !important;
+    padding: 38px 24px 28px 0 !important;
+}
+
+.hero-reference .eyebrow {
+    margin: 0 0 22px !important;
+    letter-spacing: .2em !important;
+}
+
+.hero-reference .display-title {
+    margin: 0 !important;
+    font-size: clamp(52px, 4.5vw, 76px) !important;
+    line-height: .91 !important;
+    letter-spacing: -.055em !important;
+}
+
+.hero-reference .display-title span {
+    display: block !important;
+    width: auto !important;
+}
+
+.hero-reference .lead {
+    max-width: 440px !important;
+    margin: 22px 0 22px !important;
+}
+
+.hero-reference .hero-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+}
+
+.hero-reference .hero-features {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    position: relative !important;
+    z-index: 6 !important;
+    width: calc(100% + 80px) !important;
+    margin-top: auto !important;
+    padding-top: 38px !important;
+    gap: 0 !important;
+}
+
+.hero-reference .hero-visual {
+    flex: 0 0 57% !important;
+    max-width: 57% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: relative !important;
+    isolation: isolate !important;
+    overflow: hidden !important;
+    background: #fffaf1 !important;
+}
+
+/* The image fills the photo area; the clip creates the main diagonal. */
+.hero-reference .hero-visual picture {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+}
+
+.hero-reference .hero-visual .hero-image {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center 30% !important;
+    clip-path: polygon(18% 0, 100% 0, 100% 100%, 5% 100%) !important;
+}
+
+/* Diagonal bands stay within the photo area. */
+.hero-reference .hero-visual::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    background: linear-gradient(
+        103deg,
+        transparent 0 8.5%,
+        #fffdf9 8.5% 11.5%,
+        #e8d8bf 11.5% 12.3%,
+        #fffaf1 12.3% 15.5%,
+        transparent 15.5% 100%
+    ) !important;
+}
+
+/* Cream end panel */
+.hero-reference .hero-visual::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 0 0 auto !important;
+    width: 24% !important;
+    z-index: 3 !important;
+    pointer-events: none !important;
+    background: #fffaf1 !important;
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%) !important;
+}
+
+.hero-reference .hero-side-message {
+    position: absolute !important;
+    z-index: 4 !important;
+    right: 0 !important;
+    width: 22% !important;
+}
+
+@media (min-width: 992px) {
+    .hero-reference .row {
+        height: 590px !important;
+        min-height: 590px !important;
+        max-height: 590px !important;
+    }
+
+    .hero-reference .hero-copy {
+        height: 590px !important;
+    }
+
+    .hero-reference .hero-visual {
+        height: 590px !important;
+        min-height: 590px !important;
+        max-height: 590px !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .hero-reference > .container-fluid {
+        padding: 0 22px !important;
+    }
+
+    .hero-reference .row {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        max-height: none !important;
+    }
+
+    .hero-reference .hero-copy,
+    .hero-reference .hero-visual {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    .hero-reference .hero-copy {
+        height: auto !important;
+        padding: 40px 0 24px !important;
+    }
+
+    .hero-reference .display-title {
+        font-size: clamp(46px, 9vw, 68px) !important;
+    }
+
+    .hero-reference .hero-features {
+        width: 100% !important;
+        flex-wrap: wrap !important;
+        padding-top: 28px !important;
+        row-gap: 16px !important;
+    }
+
+    .hero-reference .hero-visual {
+        height: clamp(360px, 70vw, 520px) !important;
+        min-height: 360px !important;
+        max-height: none !important;
+    }
+
+    .hero-reference .hero-side-message {
+        width: 24% !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-reference .display-title {
+        font-size: clamp(42px, 12vw, 58px) !important;
+    }
+
+    .hero-reference .hero-visual {
+        height: 360px !important;
+        min-height: 360px !important;
+    }
+
+    .hero-reference .hero-visual::after {
+        width: 27% !important;
+    }
+
+    .hero-reference .hero-side-message {
+        width: 25% !important;
+    }
+
+    .hero-reference .hero-features {
+        gap: 14px !important;
+    }
+}
+
+/* FINAL HERO COMPOSITION OVERRIDE */
+@media (min-width: 992px) {
+    .hero-reference {
+        position: relative !important;
+        overflow: hidden !important;
+        isolation: isolate !important;
+        background: #fffdf9 !important;
+        min-height: 650px !important;
+    }
+
+    .hero-reference > .container-fluid {
+        position: relative !important;
+        max-width: none !important;
+        padding: 0 0 0 3.7% !important;
+    }
+
+    .hero-reference .row {
+        position: relative !important;
+        display: flex !important;
+        height: 650px !important;
+        min-height: 650px !important;
+        max-height: 650px !important;
+    }
+
+    /* Keep copy readable while letting the photo composition extend behind it */
+    .hero-reference .hero-copy {
+        flex: 0 0 46% !important;
+        max-width: 46% !important;
+        min-width: 0 !important;
+        position: relative !important;
+        z-index: 5 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        padding: 100px 10px 28px 0 !important;
+        background: transparent !important;
+    }
+
+    .hero-reference .eyebrow {
+        position: relative !important;
+        z-index: 6 !important;
+        margin-bottom: 24px !important;
+        font-size: 11px !important;
+        letter-spacing: .22em !important;
+    }
+
+    .hero-reference .display-title {
+        position: relative !important;
+        z-index: 6 !important;
+        font-size: clamp(58px, 5.1vw, 88px) !important;
+        line-height: .91 !important;
+        letter-spacing: -.045em !important;
+        margin: 0 !important;
+        max-width: 620px !important;
+    }
+
+    .hero-reference .display-title span {
+        display: block !important;
+        white-space: nowrap !important;
+    }
+
+    .hero-reference .lead {
+        position: relative !important;
+        z-index: 6 !important;
+        max-width: 465px !important;
+        font-size: 16px !important;
+        line-height: 1.55 !important;
+        margin-top: 24px !important;
+        margin-bottom: 22px !important;
+    }
+
+    .hero-reference .hero-actions {
+        position: relative !important;
+        z-index: 7 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 14px !important;
+    }
+
+    .hero-reference .hero-visual {
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 62% !important;
+        height: 650px !important;
+        min-height: 650px !important;
+        max-height: 650px !important;
+        overflow: hidden !important;
+        z-index: 2 !important;
+        background: #fffaf1 !important;
+        isolation: isolate !important;
+    }
+
+    .hero-reference .hero-visual picture {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 1 !important;
+    }
+
+    .hero-reference .hero-visual .hero-image {
+        display: block !important;
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center 30% !important;
+        clip-path: polygon(23% 0, 100% 0, 100% 100%, 7% 100%) !important;
+    }
+
+    /* Broad diagonal bands like the reference composition */
+    .hero-reference .hero-visual::before {
+        content: "" !important;
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        z-index: 3 !important;
+        pointer-events: none !important;
+        background: linear-gradient(
+            103deg,
+            transparent 0 13%,
+            #fffdf9 13% 20%,
+            #e8d8bf 20% 21.2%,
+            #fffaf1 21.2% 25.5%,
+            transparent 25.5% 100%
+        ) !important;
+    }
+
+    /* Cream side panel */
+    .hero-reference .hero-visual::after {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 25% !important;
+        z-index: 4 !important;
+        pointer-events: none !important;
+        background: #fffaf1 !important;
+        clip-path: polygon(36% 0, 100% 0, 100% 100%, 0 100%) !important;
+    }
+
+    .hero-reference .hero-side-message {
+        position: absolute !important;
+        z-index: 5 !important;
+        top: 16% !important;
+        right: 0 !important;
+        bottom: auto !important;
+        width: 24% !important;
+        text-align: center !important;
+    }
+
+    .hero-reference .hero-features {
+        position: absolute !important;
+        left: 0 !important;
+        bottom: 24px !important;
+        width: 100% !important;
+        margin: 0 !important;
+        z-index: 8 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0 !important;
+        background: transparent !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .hero-reference .hero-visual {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 360px !important;
+    }
+}
+
+/* FINAL VISUAL BALANCE — reference-inspired hero */
+@media (min-width: 992px) {
+    .hero-reference {
+        min-height: 650px !important;
+        background: #fffdf9 !important;
+        overflow: hidden !important;
+    }
+
+    .hero-reference .row {
+        height: 650px !important;
+        min-height: 650px !important;
+        max-height: 650px !important;
+    }
+
+    .hero-reference .hero-copy {
+        flex: 0 0 46% !important;
+        max-width: 46% !important;
+        padding-top: 92px !important;
+        padding-right: 8px !important;
+        padding-bottom: 28px !important;
+        z-index: 6 !important;
+    }
+
+    .hero-reference .eyebrow {
+        margin-bottom: 22px !important;
+        letter-spacing: .20em !important;
+    }
+
+    .hero-reference .display-title {
+        font-size: clamp(58px, 4.8vw, 82px) !important;
+        line-height: .92 !important;
+        letter-spacing: -.045em !important;
+    }
+
+    .hero-reference .lead {
+        max-width: 460px !important;
+        margin-top: 22px !important;
+        margin-bottom: 22px !important;
+        line-height: 1.55 !important;
+    }
+
+    .hero-reference .hero-visual {
+        right: 0 !important;
+        width: 62% !important;
+        height: 650px !important;
+        min-height: 650px !important;
+        max-height: 650px !important;
+        overflow: hidden !important;
+        background: #fffaf1 !important;
+    }
+
+    .hero-reference .hero-visual picture {
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .hero-reference .hero-visual .hero-image {
+        object-fit: cover !important;
+        object-position: center 30% !important;
+        clip-path: polygon(19% 0, 100% 0, 100% 100%, 8% 100%) !important;
+    }
+
+    /* Slim, layered diagonal accents instead of oversized bands */
+    .hero-reference .hero-visual::before {
+        background: linear-gradient(
+            103deg,
+            transparent 0 17%,
+            #fffdf9 17% 20.5%,
+            #e8d8bf 20.5% 21.4%,
+            #fffaf1 21.4% 24%,
+            transparent 24% 100%
+        ) !important;
+    }
+
+    /* Keep the cream panel narrow and the message completely visible */
+    .hero-reference .hero-visual::after {
+        width: 21% !important;
+        clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%) !important;
+        background: #fffaf1 !important;
+    }
+
+    .hero-reference .hero-side-message {
+        top: 22% !important;
+        right: 0 !important;
+        bottom: auto !important;
+        width: 20% !important;
+        height: auto !important;
+        transform: none !important;
+        margin: 0 !important;
+        z-index: 7 !important;
+        text-align: center !important;
+    }
+
+    .hero-reference .hero-side-message > span {
+        display: block !important;
+        line-height: 1.08 !important;
+    }
+
+    .hero-reference .hero-side-values {
+        margin-top: 28px !important;
+    }
+
+    .hero-reference .hero-features {
+        left: 0 !important;
+        bottom: 26px !important;
+        width: 100% !important;
+        margin: 0 !important;
+        z-index: 8 !important;
+    }
+}
