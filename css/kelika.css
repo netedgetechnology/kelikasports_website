@@ -1188,3 +1188,11 @@
         font-size: 8px !important;
     }
 }
+/* Admin typography — Manrope, scoped to the CMS shell so public-site fonts are untouched. Falls back to the public site's Inter / system sans if Manrope cannot load. */
+.admin-shell{--kelika-admin-font:"Manrope","Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--bs-body-font-family:var(--kelika-admin-font);--bs-font-sans-serif:var(--kelika-admin-font);font-family:var(--kelika-admin-font);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.admin-shell :is(button,input,select,textarea,optgroup,.btn,.form-control,.form-select,.input-group-text,.dropdown-menu,.modal,.tooltip,.popover,.toast){font-family:inherit}
+.admin-shell :is(h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.modal-title){font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.admin-shell .admin-brand{font-weight:800;letter-spacing:.22em}.admin-shell .admin-sidebar a{font-weight:500;letter-spacing:.005em}.admin-shell .admin-sidebar a.active{font-weight:700}.admin-shell .admin-sidebar .text-uppercase{font-size:.68rem;font-weight:700;letter-spacing:.14em}
+.admin-shell .btn{font-weight:600;letter-spacing:.01em}.admin-shell :is(.btn-kelika,.btn-kelika-outline){font-weight:800;letter-spacing:.045em}
+.admin-shell .table{font-variant-numeric:tabular-nums}.admin-shell .table>thead th{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.admin-shell .badge{font-weight:700;letter-spacing:.02em}.admin-shell .page-link{font-weight:600}.admin-shell .breadcrumb{font-size:.82rem;font-weight:500}.admin-shell .alert strong{font-weight:700}
