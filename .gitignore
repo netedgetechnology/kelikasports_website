@@ -54,3 +54,9 @@ Thumbs.db
 *.orig
 *.swp
 *~
+
+# Local-only files: design mock-ups, CMS uploads (runtime data), test artifacts and caches.
+/design-reference/
+/storage/app/public/media/
+/storage/framework/testing/disks/
+/.phpunit.result.cache
