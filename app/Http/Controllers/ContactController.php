@@ -15,13 +15,15 @@ class ContactController extends Controller
     {
         // Honeypot field: quietly accept bot submissions without storing them.
         if ($request->filled('website')) return back()->with('success','Thank you. Your message has been received.');
-        $key = 'contact:'.hash('sha256', (string) $request->ip());
-        if (RateLimiter::tooManyAttempts($key, 5)) return back()->withErrors(['form'=>'Too many messages were submitted. Please try again later.'])->withInput();
-        RateLimiter::hit($key, 600);
         $data = $request->validate([
             'name'=>['required','string','max:120'], 'email'=>['required','email:rfc','max:190'], 'phone'=>['nullable','string','max:40'],
             'category'=>['nullable','string','max:100'], 'message'=>['required','string','max:5000'], 'consent'=>['accepted'],
         ]);
+        // Five stored enquiries per visitor every ten minutes. Only valid submissions count, so correcting a typo never
+        // locks a visitor out; every request, valid or not, also counts towards the route's limit of ten per ten minutes.
+        $key = 'contact:'.hash('sha256', (string) $request->ip());
+        if (RateLimiter::tooManyAttempts($key, 5)) return back()->withErrors(['form'=>'Too many messages were submitted. Please try again later.'])->withInput();
+        RateLimiter::hit($key, 600);
         unset($data['consent']);
         $data['status'] = 'new'; $data['source_page'] = Str::limit((string) $request->input('source_page','contact'),120);
         $data['ip_hash'] = hash_hmac('sha256', (string) $request->ip(), (string) config('app.key'));

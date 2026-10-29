@@ -4,6 +4,7 @@
 @section('content')
 <div class="admin-panel">
     <a href="{{ route('admin.content.index', $type) }}">← Back to {{ ucfirst($type) }}</a>
+    @if(!empty($item->data['demo']))<div class="alert alert-warning mt-3 mb-0"><strong>Demo content — unverified.</strong> This record reproduces design-reference wording. It is shown in CMS preview and on the development site's demo mode only — never in production or search, even if published. Untick “Demo” below only once every detail has been verified and approved.</div>@endif
     <form class="mt-4" method="post" action="{{ $item->exists ? route('admin.content.update', [$type, $item]) : route('admin.content.store', $type) }}" id="content-item-form">
         @csrf
         @if($item->exists) @method('PUT') @endif

@@ -1,0 +1,7 @@
+# Uploaded media (served at /storage via the public/storage link) is static content only:
+# never hand a file in this directory to PHP or any other script handler.
+<FilesMatch "(?i)\.(php[0-9]?|phar|phtml|pht|cgi|pl|py|sh|shtml|asp|aspx|jsp)$">
+    SetHandler none
+    Require all denied
+</FilesMatch>
+Options -Indexes

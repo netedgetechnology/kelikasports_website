@@ -38,3 +38,19 @@ Thumbs.db
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Local backups, database dumps and pre-edit copies: never commit these.
+# (Rules only affect untracked files; backups already tracked by Git stay tracked until removed from the index.)
+/storage/app/backups/
+*.sql
+*.sql.gz
+*.bak
+*.bak-*
+*.bak.*
+*.backup
+*.backup-*
+*.before-*
+*.pre-*
+*.orig
+*.swp
+*~

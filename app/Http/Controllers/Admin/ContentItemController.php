@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ContentItem;
 use App\Support\SafeUrl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
@@ -23,8 +24,23 @@ class ContentItemController extends Controller
     {
         $type = $this->validType($type);
         $items = ContentItem::ofType($type)->orderBy('sort_order')->orderBy('title')->paginate(25);
+        $archived = ContentItem::onlyTrashed()->ofType($type)->orderByDesc('deleted_at')->get();
 
-        return view('admin.content.index', compact('type', 'items'));
+        return view('admin.content.index', compact('type', 'items', 'archived'));
+    }
+
+    /** Brings an archived item back as a draft, so it only appears on the website again once it is published. */
+    public function restore(string $type, ContentItem $item)
+    {
+        $type = $this->validType($type);
+        abort_unless($item->type === $type && $item->trashed(), 404);
+
+        DB::transaction(function () use ($item) {
+            $item->restore();
+            $item->update(['status' => 'draft', 'updated_by' => auth()->id()]);
+        });
+
+        return back()->with('success', "\"{$item->title}\" restored as a draft. Publish it when it should appear on the website again.");
     }
 
     public function create(string $type)

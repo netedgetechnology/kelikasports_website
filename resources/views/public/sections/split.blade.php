@@ -1,66 +1,71 @@
 @php
     $d = $section->data ?? [];
+    $layout = \App\Support\SectionDefaults::layout($section);
+    $splitImage = \App\Support\Media::url($d['image'] ?? null);
+    $splitMobileImage = \App\Support\Media::url($d['mobile_image'] ?? null);
+    $amenities = \App\Support\SectionDefaults::isFacilities($section) ? ($facilities ?? collect()) : collect();
+    $videoUrl = \App\Support\SafeUrl::isSafe($d['video_url'] ?? null) ? ($d['video_url'] ?? '') : '';
+    // Without an image (or video) the public page shows the copy on its own instead of an empty image box.
+    $showMedia = $splitImage || $videoUrl || ($preview ?? false);
 @endphp
 
-<section class="section-pad"
+@if (in_array($layout, ['program', 'courts', 'story_left'], true))
+@php($showMedia = $splitImage || ($preview ?? false))
+@include('public.sections.layouts.split-'.($layout === 'courts' ? 'courts' : 'program'))
+@else
+<section class="kl-section kl-split kl-split--{{ $layout }} {{ $amenities->isNotEmpty() ? 'kl-split--facilities' : '' }} {{ $showMedia ? '' : 'kl-split--no-media' }}"
          id="{{ \Illuminate\Support\Str::slug($d['eyebrow'] ?? $d['title'] ?? 'split') }}">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-5">
-                <p class="eyebrow">{{ $d['eyebrow'] ?? '' }}</p>
+    @if ($showMedia)
+    <div class="kl-split__media">
+        @if ($splitImage)
+            <x-picture :image="$d['image'] ?? null" :mobile="$d['mobile_image'] ?? null" :alt="$d['image_alt'] ?? ''"
+                       :img-style="'object-position: '.($d['image_position'] ?? 'center')" sizes="(min-width: 992px) 65vw, 100vw" :dimensions="true" />
+        @elseif ($preview ?? false)
+            <div class="image-placeholder" aria-label="Image to be selected in CMS">Image to be selected in CMS</div>
+        @endif
 
-                <h2 class="section-title">
-                    @foreach (explode('|', (string) ($d['title'] ?? '')) as $line)
-                        <span class="{{ $loop->index === 1 ? 'accent-terracotta' : ($loop->index === 2 ? 'accent-gold' : '') }}">{{ $line }}</span>
-                        @if (! $loop->last)
-                            <br>
-                        @endif
-                    @endforeach
-                </h2>
+        @if ($videoUrl)
+            <a class="kl-play" href="{{ $videoUrl }}" target="_blank" rel="noopener noreferrer">
+                <span class="kl-play__button">{!! \App\Support\Icon::svg('play', 'kl-icon') !!}</span>
+                <span>{{ $d['video_label'] ?: 'Watch video' }}</span>
+            </a>
+        @endif
+    </div>
+    @endif
 
-                @if (! empty($d['subtitle']))
-                    <p class="lead mt-3">{{ $d['subtitle'] }}</p>
-                @endif
+    @if ($amenities->isNotEmpty())
+        @include('public.partials.decor-botanical')
+    @endif
 
-                @if (! empty($d['body']))
-                    <p class="text-secondary mt-3">{!! nl2br(e($d['body'])) !!}</p>
-                @endif
+    <div class="kl-split__copy">
+        @if (!empty($d['eyebrow']))<p class="kl-kicker">{{ $d['eyebrow'] }}</p>@endif
+        @include('public.partials.heading', ['title' => $d['title'] ?? '', 'accent' => \App\Support\SectionDefaults::accent($section)])
 
-                @if (! empty($d['button_label']))
-                    <a class="btn btn-kelika mt-3"
-                       href="{{ \App\Support\SafeUrl::isSafe($d['button_url'] ?? null) && ! empty($d['button_url']) ? $d['button_url'] : route('page.show', ['slug' => 'contact']) }}">
-                        {{ $d['button_label'] }} →
-                    </a>
-                @endif
-            </div>
+        @if (!empty($d['subtitle']))
+            <p class="kl-lead mt-3">{{ $d['subtitle'] }}</p>
+        @endif
 
-            <div class="col-lg-7">
-                @if (! empty($d['image']))
-                    <picture>
-                        @if (! empty($d['mobile_image']))
-                            <source
-                                media="(max-width: 767px)"
-                                srcset="{{ str_starts_with($d['mobile_image'], 'http') || str_starts_with($d['mobile_image'], '/') ? $d['mobile_image'] : \Illuminate\Support\Facades\Storage::disk('public')->url($d['mobile_image']) }}">
-                        @endif
+        @if (!empty($d['body']))
+            <p class="kl-muted mt-3">{!! nl2br(e($d['body'])) !!}</p>
+        @endif
 
-                        <img
-                            class="w-100 rounded-3"
-                            loading="lazy"
-                            src="{{ str_starts_with($d['image'], 'http') || str_starts_with($d['image'], '/') ? $d['image'] : \Illuminate\Support\Facades\Storage::disk('public')->url($d['image']) }}"
-                            alt="{{ $d['image_alt'] ?? '' }}"
-                            style="object-position: {{ $d['image_position'] ?? 'center' }}">
-                    </picture>
-                @else
-                    @if ($preview ?? false)
-                        <div class="image-placeholder rounded-3"
-                             aria-label="Image to be selected in CMS">
-                            Image to be selected in CMS
-                        </div>
-                    @else
-                        <div class="image-placeholder rounded-3" aria-hidden="true"></div>
-                    @endif
-                @endif
-            </div>
-        </div>
+        @if ($amenities->isNotEmpty())
+            <ul class="kl-amenities">
+                @foreach ($amenities as $amenity)
+                    <li>
+                        {!! \App\Support\Icon::render($amenity->data['icon'] ?? null, $amenity->title, 'kl-icon kl-icon--lg') ?: \App\Support\Icon::svg('check', 'kl-icon kl-icon--lg') !!}
+                        <span>{{ ($amenity->data['short_label'] ?? '') ?: $amenity->title }}</span>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+
+        @if (!empty($d['button_label']))
+            <a class="btn btn-kelika mt-4"
+               href="{{ \App\Support\SafeUrl::isSafe($d['button_url'] ?? null) && !empty($d['button_url']) ? $d['button_url'] : route('page.show', ['slug' => 'contact']) }}">
+                {{ $d['button_label'] }} {!! \App\Support\Icon::svg('arrow-right', 'kl-icon kl-icon--sm') !!}
+            </a>
+        @endif
     </div>
 </section>
+@endif

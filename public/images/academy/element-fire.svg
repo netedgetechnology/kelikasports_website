@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 280" width="520" height="280" role="img" aria-label="Fire: rising flames"><title>Fire: rising flames</title><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a0904"/><stop offset=".6" stop-color="#6e1606"/><stop offset="1" stop-color="#b8300a"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".85" r=".7"><stop offset="0" stop-color="#ffcf6b" stop-opacity=".9"/><stop offset=".45" stop-color="#ff7a1a" stop-opacity=".55"/><stop offset="1" stop-color="#ff4b12" stop-opacity="0"/></radialGradient>
+<linearGradient id="flame" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffe08a"/><stop offset=".35" stop-color="#ff9a2a"/><stop offset=".75" stop-color="#ef4a17"/><stop offset="1" stop-color="#b3200a" stop-opacity="0"/></linearGradient>
+<filter id="lick" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".018 .04" numOctaves="3" seed="11"/><feDisplacementMap in="SourceGraphic" scale="34"/><feGaussianBlur stdDeviation="1.2"/></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="8"/></filter></defs>
+<rect width="520" height="280" fill="url(#bg)"/>
+<rect width="520" height="280" fill="url(#glow)"/>
+<g filter="url(#lick)">
+<path d="M60 290C40 230 80 200 92 150 104 196 128 210 132 170 150 210 140 250 160 290Z" fill="url(#flame)" opacity=".85"/>
+<path d="M150 290C120 220 170 170 186 96 200 150 236 168 230 110 268 170 262 230 290 290Z" fill="url(#flame)"/>
+<path d="M250 290C236 230 280 196 296 132 312 180 340 196 346 150 372 200 360 250 390 290Z" fill="url(#flame)"/>
+<path d="M360 290C346 240 380 214 396 168 410 210 436 222 440 186 468 226 456 262 480 290Z" fill="url(#flame)" opacity=".85"/>
+<path d="M200 290C190 250 214 222 226 186 238 224 258 236 262 212 278 244 270 270 284 290Z" fill="#ffe7a8" opacity=".9"/>
+</g>
+<g fill="#ffb347" opacity=".9"><circle cx="120" cy="70" r="2"/><circle cx="210" cy="44" r="1.6"/><circle cx="330" cy="60" r="2.2"/><circle cx="412" cy="90" r="1.4"/><circle cx="262" cy="30" r="1.2"/><circle cx="168" cy="96" r="1.5"/></g>
+<ellipse cx="260" cy="270" rx="230" ry="40" fill="#ffcf6b" opacity=".35" filter="url(#soft)"/></svg>

@@ -14,10 +14,11 @@ class DashboardController extends Controller
         return view('admin.dashboard', [
             'pages' => Page::count(),
             'publishedPages' => Page::published()->count(),
-            'draftPages' => Page::where('status', 'draft')->count(),
+            'draftPages' => Page::where('status', Page::DRAFT)->count(),
+            'scheduledPages' => Page::upcoming()->count(),
             'enquiries' => Enquiry::where('status', 'new')->count(),
             'upcomingEvents' => ContentItem::ofType('event')->published()->where('starts_at', '>=', now())->count(),
-            'recentEnquiries' => Enquiry::latest()->limit(5)->get(),
+            'recentEnquiries' => Enquiry::where('status', '!=', Enquiry::SPAM)->latest()->limit(5)->get(),
         ]);
     }
 }

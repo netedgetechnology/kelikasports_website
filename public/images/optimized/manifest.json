@@ -1,0 +1,238 @@
+{
+    "version": 1,
+    "generated_at": "2026-10-26T00:45:03+05:30",
+    "images": {
+        "/images/home/cta-badminton-background.jpg": {
+            "status": "optimized",
+            "version": 1,
+            "source_sha1": "3965c3a4f087d69c67d7d59d56af6f061390d374",
+            "width": 2000,
+            "height": 750,
+            "variants": [
+                {
+                    "width": 400,
+                    "height": 150,
+                    "file": "w400-03c6a2ace2ad.webp",
+                    "bytes": 8026
+                },
+                {
+                    "width": 800,
+                    "height": 300,
+                    "file": "w800-03c6a2ace2ad.webp",
+                    "bytes": 20658
+                },
+                {
+                    "width": 1200,
+                    "height": 450,
+                    "file": "w1200-03c6a2ace2ad.webp",
+                    "bytes": 34302
+                },
+                {
+                    "width": 1600,
+                    "height": 600,
+                    "file": "w1600-03c6a2ace2ad.webp",
+                    "bytes": 47238
+                },
+                {
+                    "width": 2000,
+                    "height": 750,
+                    "file": "w2000-03c6a2ace2ad.webp",
+                    "bytes": 66262
+                }
+            ],
+            "error": null,
+            "processed_at": "2026-10-26T00:45:02+05:30"
+        },
+        "/images/home/event-inter-academy-tournament.jpg": {
+            "status": "optimized",
+            "version": 1,
+            "source_sha1": "f7cfe2f9bee7f87bc909cfcfdb738eaa5e4a73a3",
+            "width": 800,
+            "height": 552,
+            "variants": [
+                {
+                    "width": 400,
+                    "height": 276,
+                    "file": "w400-e560215d1736.webp",
+                    "bytes": 24354
+                },
+                {
+                    "width": 800,
+                    "height": 552,
+                    "file": "w800-e560215d1736.webp",
+                    "bytes": 58144
+                }
+            ],
+            "error": null,
+            "processed_at": "2026-10-26T00:45:02+05:30"
+        },
+        "/images/home/event-winter-championship.jpg": {
+            "status": "optimized",
+            "version": 1,
+            "source_sha1": "c0782b9b34dc7307a2c0e54af243afd78229bb64",
+            "width": 800,
+            "height": 552,
+            "variants": [
+                {
+                    "width": 400,
+                    "height": 276,
+                    "file": "w400-3c9c1b8ca81d.webp",
+                    "bytes": 40130
+                },
+                {
+                    "width": 800,
+                    "height": 552,
+                    "file": "w800-3c9c1b8ca81d.webp",
+                    "bytes": 102438
+                }
+            ],
+            "error": null,
+            "processed_at": "2026-10-26T00:45:02+05:30"
+        },
+        "/images/home/event-youth-training-camp.jpg": {
+            "status": "optimized",
+            "version": 1,
+            "source_sha1": "4dd770f840d3f1818b39fe35bde06a1e814a4c96",
+            "width": 800,
+            "height": 552,
+            "variants": [
+                {
+                    "width": 400,
+                    "height": 276,
+                    "file": "w400-3244dd7f9f24.webp",
+                    "bytes": 18990
+                },
+                {
+                    "width": 800,
+                    "height": 552,
+                    "file": "w800-3244dd7f9f24.webp",
+                    "bytes": 49810
+                }
+            ],
+            "error": null,
+            "processed_at": "2026-10-26T00:45:02+05:30"
+        },
+        "/images/home/hero-player-mobile.jpg": {
+            "status": "optimized",
+            "version": 1,
+            "source_sha1": "2a87fe9390e22aa338b764d45ad7af71491cc04b",
+            "width": 1080,
+            "height": 1350,
+            "variants": [
+                {
+                    "width": 400,
+                    "height": 500,
+                    "file": "w400-dea94fe24bc3.webp",
+                    "bytes": 12838
+                },
+                {
+                    "width": 800,
+                    "height": 1000,
+                    "file": "w800-dea94fe24bc3.webp",
+                    "bytes": 30734
+                },
+                {
+                    "width": 1080,
+                    "height": 1350,
+                    "file": "w1080-dea94fe24bc3.webp",
+                    "bytes": 51818
+                }
+            ],
+            "error": null,
+            "processed_at": "2026-10-26T00:45:02+05:30"
+        },
+        "/images/home/hero-player.jpg": {
+            "status": "optimized",
+            "version": 1,
+            "source_sha1": "bc367454ecf5bf7ce8493ef883b433712ba7e8a8",
+            "width": 2100,
+            "height": 1400,
+            "variants": [
+                {
+                    "width": 400,
+                    "height": 267,
+                    "file": "w400-04ae451f0255.webp",
+                    "bytes": 6424
+                },
+                {
+                    "width": 800,
+                    "height": 533,
+                    "file": "w800-04ae451f0255.webp",
+                    "bytes": 15640
+                },
+                {
+                    "width": 1200,
+                    "height": 800,
+                    "file": "w1200-04ae451f0255.webp",
+                    "bytes": 26614
+                },
+                {
+                    "width": 1600,
+                    "height": 1067,
+                    "file": "w1600-04ae451f0255.webp",
+                    "bytes": 39336
+                },
+                {
+                    "width": 2000,
+                    "height": 1333,
+                    "file": "w2000-04ae451f0255.webp",
+                    "bytes": 52048
+                }
+            ],
+            "error": null,
+            "processed_at": "2026-10-26T00:45:02+05:30"
+        },
+        "/images/home/stats-shuttlecock.jpg": {
+            "status": "optimized",
+            "version": 1,
+            "source_sha1": "27327b066b9b691157decccd61d5525e13dc8c23",
+            "width": 1024,
+            "height": 683,
+            "variants": [
+                {
+                    "width": 400,
+                    "height": 267,
+                    "file": "w400-41bbad76d8e4.webp",
+                    "bytes": 18976
+                },
+                {
+                    "width": 800,
+                    "height": 534,
+                    "file": "w800-41bbad76d8e4.webp",
+                    "bytes": 44982
+                },
+                {
+                    "width": 1024,
+                    "height": 683,
+                    "file": "w1024-41bbad76d8e4.webp",
+                    "bytes": 67756
+                }
+            ],
+            "error": null,
+            "processed_at": "2026-10-26T00:45:03+05:30"
+        },
+        "/images/kelika-wordmark.png": {
+            "status": "optimized",
+            "version": 1,
+            "source_sha1": "f8e34744bab1571a408829a91aa9edbccbc0be3c",
+            "width": 423,
+            "height": 80,
+            "variants": [
+                {
+                    "width": 400,
+                    "height": 76,
+                    "file": "w400-08b53bcc502e.webp",
+                    "bytes": 2738
+                },
+                {
+                    "width": 423,
+                    "height": 80,
+                    "file": "w423-08b53bcc502e.webp",
+                    "bytes": 3138
+                }
+            ],
+            "error": null,
+            "processed_at": "2026-10-26T00:45:03+05:30"
+        }
+    }
+}

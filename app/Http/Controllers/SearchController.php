@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\ContentItem;
 use App\Models\Page;
+use App\Support\Like;
 use Illuminate\Http\Request;
 class SearchController extends Controller
 {
@@ -11,8 +12,9 @@ class SearchController extends Controller
         $query=trim((string)($validated['q'] ?? ''));
         $pages=collect();$items=collect();
         if($query!==''){
-            $pages=Page::published()->where(function($builder)use($query){$builder->where('title','like','%'.$query.'%')->orWhere('seo_description','like','%'.$query.'%');})->orderBy('sort_order')->limit(20)->get();
-            $items=ContentItem::query()->where('status','published')->whereIn('type',['sport','program','facility','event','coach','faq'])->where('title','like','%'.$query.'%')->orderBy('sort_order')->limit(20)->get();
+            // What visitors type is matched literally: "%" and "_" never widen the results (App\Support\Like).
+            $pages=Like::anyColumn(Page::published(),['title','seo_description'],$query)->orderBy('sort_order')->limit(20)->get();
+            $items=Like::anyColumn(ContentItem::query()->where('status','published')->whereIn('type',['sport','program','facility','event','coach','faq']),['title'],$query)->orderBy('sort_order')->limit(20)->get()->reject(fn ($item) => (bool) ($item->data['demo'] ?? false))->values();
         }
         return response()->view('public.search',compact('query','pages','items'))->header('X-Robots-Tag','noindex, follow');
     }

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 280" width="520" height="280" role="img" aria-label="Earth: layered mountain ridges"><title>Earth: layered mountain ridges</title><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7ecdc"/><stop offset="1" stop-color="#ead2b2"/></linearGradient>
+<linearGradient id="far" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c99d72"/><stop offset="1" stop-color="#b98a5e"/></linearGradient>
+<linearGradient id="mid" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b47a45"/><stop offset="1" stop-color="#8e5528"/></linearGradient>
+<linearGradient id="near" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7e4a22"/><stop offset="1" stop-color="#4f2c12"/></linearGradient>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.14  0 0 0 0 0.05  0 0 0 0.35 0"/></filter></defs>
+<rect width="520" height="280" fill="url(#sky)"/>
+<path d="M0 150 60 96 104 128 170 58 228 118 282 74 338 124 398 66 454 112 520 82V280H0Z" fill="url(#far)" opacity=".85"/>
+<path d="M0 196 54 140 96 170 150 112 214 172 266 128 330 184 392 120 446 166 520 132V280H0Z" fill="url(#mid)"/>
+<path d="M150 112 172 150 160 176 188 166 214 172 180 128Z M392 120 404 160 388 184 420 172 446 166 412 136Z M266 128 282 162 300 160Z" fill="#f2dcc0" opacity=".35"/>
+<path d="M0 240 70 200 128 226 196 186 262 230 330 196 398 236 470 204 520 222V280H0Z" fill="url(#near)"/>
+<rect width="520" height="280" filter="url(#grain)"/></svg>

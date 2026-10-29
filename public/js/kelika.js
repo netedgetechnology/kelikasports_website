@@ -9,14 +9,53 @@ document.addEventListener('click', (event) => {
 });
 
 const itemFieldSets = {
+    hero: ['title', 'value', 'icon'],
     card_grid: ['title', 'description', 'image', 'mobile_image', 'image_alt', 'image_position', 'url', 'icon', 'color'],
-    feature_list: ['title', 'description', 'icon', 'color'],
-    five_elements: ['name', 'subtitle', 'description', 'color', 'icon'],
+    split: ['title', 'description', 'icon', 'color', 'image', 'image_alt', 'image_position', 'url'],
+    feature_list: ['title', 'description', 'icon', 'color', 'url'],
+    five_elements: ['title', 'keyword', 'description', 'color', 'icon', 'image', 'image_alt'],
     stats: ['value', 'label'],
     faq: ['question', 'answer'],
-    gallery: ['image', 'mobile_image', 'image_alt', 'caption'],
+    gallery: ['image', 'mobile_image', 'image_alt', 'image_position', 'caption'],
     testimonials: ['quote', 'name', 'role', 'image', 'image_alt'],
 };
+
+// Character counters for text fields with data-char-count="<counter id>" (e.g. the contact message): "12 / 5000".
+document.addEventListener('input', (event) => {
+    const field = event.target.closest?.('[data-char-count]');
+    if (!field) return;
+    const counter = document.getElementById(field.dataset.charCount);
+    if (counter) counter.textContent = `${field.value.length} / ${field.maxLength > 0 ? field.maxLength : ''}`.trim();
+});
+
+// Testimonial carousel arrows scroll the track by one card; the track remains natively scrollable without JS.
+document.addEventListener('click', (event) => {
+    const control = event.target.closest('[data-carousel-prev], [data-carousel-next]');
+    if (!control) return;
+    const track = control.closest('[data-carousel]')?.querySelector('[data-carousel-track]');
+    const card = track?.firstElementChild;
+    if (!track || !card) return;
+    const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || '0');
+    track.scrollBy({ left: control.hasAttribute('data-carousel-prev') ? -step : step, behavior: 'smooth' });
+});
+
+// Disable an arrow when the track cannot scroll further in that direction.
+function updateCarouselControls(track) {
+    const carousel = track.closest('[data-carousel]');
+    const maxScroll = track.scrollWidth - track.clientWidth - 1;
+    const prev = carousel?.querySelector('[data-carousel-prev]');
+    const next = carousel?.querySelector('[data-carousel-next]');
+    if (prev) prev.disabled = track.scrollLeft <= 0;
+    if (next) next.disabled = track.scrollLeft >= maxScroll;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-carousel-track]').forEach((track) => {
+        updateCarouselControls(track);
+        track.addEventListener('scroll', () => updateCarouselControls(track), { passive: true });
+        window.addEventListener('resize', () => updateCarouselControls(track));
+    });
+});
 
 function initializeSectionItemsEditor() {
     const editor = document.querySelector('#items-editor');
@@ -152,13 +191,13 @@ document.addEventListener('DOMContentLoaded', initializeSectionItemsEditor);
 
 const contentFieldSets = {
     sport: ['eyebrow', 'tagline', 'description', 'image', 'mobile_image', 'image_alt', 'image_position', 'url', 'features_json'],
-    program: ['eyebrow', 'description', 'summary', 'age_range', 'image', 'mobile_image', 'image_alt', 'image_position', 'url', 'features_json'],
-    facility: ['category', 'description', 'summary', 'image', 'mobile_image', 'image_alt', 'image_position', 'url'],
-    event: ['eyebrow', 'description', 'summary', 'image', 'mobile_image', 'image_alt', 'image_position', 'location', 'url', 'registration_url', 'featured'],
+    program: ['eyebrow', 'description', 'summary', 'age_range', 'icon', 'image', 'mobile_image', 'image_alt', 'image_position', 'url', 'features_json'],
+    facility: ['category', 'short_label', 'icon', 'description', 'summary', 'image', 'mobile_image', 'image_alt', 'image_position', 'url'],
+    event: ['eyebrow', 'date_label', 'description', 'summary', 'image', 'mobile_image', 'image_alt', 'image_position', 'location', 'url', 'registration_url', 'featured', 'demo'],
     coach: ['role', 'bio', 'qualifications', 'specialties', 'image', 'mobile_image', 'image_alt', 'image_position'],
     faq: ['question', 'answer'],
-    gallery: ['image', 'mobile_image', 'image_alt', 'caption'],
-    testimonial: ['quote', 'name', 'role', 'relationship', 'image', 'image_alt'],
+    gallery: ['image', 'mobile_image', 'image_alt', 'image_position', 'caption'],
+    testimonial: ['quote', 'name', 'role', 'relationship', 'image', 'image_alt', 'demo'],
 };
 
 function initializeContentDataEditor() {
@@ -186,6 +225,7 @@ function initializeContentDataEditor() {
 
     const imagePositions = ['center', 'top', 'bottom', 'left', 'right', 'center top', 'center bottom', 'left center', 'right center'];
     const longTextFields = ['description', 'summary', 'bio', 'answer', 'quote', 'caption', 'features_json'];
+    const booleanFields = { featured: 'Mark as featured event', demo: 'Demo content — unverified, shown only in CMS preview' };
 
     const sync = () => {
         fieldsContainer.querySelectorAll('[data-content-field]').forEach((input) => {
@@ -194,8 +234,8 @@ function initializeContentDataEditor() {
                 const parsed = JSON.parse(input.value || '[]');
                 if (!Array.isArray(parsed)) throw new Error('Features must be a JSON array.');
                 data.features = parsed;
-            } else if (field === 'featured') {
-                data.featured = input.checked;
+            } else if (booleanFields[field]) {
+                data[field] = input.checked;
             } else {
                 data[field] = input.value;
             }
@@ -212,17 +252,17 @@ function initializeContentDataEditor() {
         label.textContent = field === 'features_json' ? 'Features (JSON array)' : field.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
 
         let input;
-        if (field === 'featured') {
+        if (booleanFields[field]) {
             const checkWrap = document.createElement('div');
             checkWrap.className = 'form-check mt-2';
             input = document.createElement('input');
             input.type = 'checkbox';
             input.className = 'form-check-input';
-            input.checked = Boolean(data.featured);
+            input.checked = Boolean(data[field]);
             input.dataset.contentField = field;
             const checkLabel = document.createElement('label');
             checkLabel.className = 'form-check-label';
-            checkLabel.textContent = 'Mark as featured event';
+            checkLabel.textContent = booleanFields[field];
             checkLabel.prepend(input);
             checkWrap.append(checkLabel);
             wrapper.append(checkWrap);
@@ -249,6 +289,7 @@ function initializeContentDataEditor() {
             input.dataset.contentField = field;
             if (['image', 'mobile_image'].includes(field)) input.placeholder = 'Upload in Media Library and paste the media/... path';
             if (field === 'url' || field === 'registration_url') input.placeholder = '/contact or https://...';
+            if (field === 'date_label') input.placeholder = 'e.g. 18 Dec — used for the date badge when no start date is set';
             label.append(input);
             wrapper.append(label);
         }
@@ -276,3 +317,18 @@ function initializeContentDataEditor() {
 }
 
 document.addEventListener('DOMContentLoaded', initializeContentDataEditor);
+
+// Hero height: expose the distance from the top of the page to the hero (header plus any notices) so CSS can size
+// the hero to the viewport space below it. Re-measured on resize, orientation change and header size changes.
+const hero = document.querySelector('.kl-hero');
+if (hero) {
+    const setHeroOffset = () => document.documentElement.style.setProperty('--kl-hero-offset', `${Math.round(hero.getBoundingClientRect().top + window.scrollY)}px`);
+    setHeroOffset();
+    window.addEventListener('resize', setHeroOffset);
+    window.addEventListener('orientationchange', setHeroOffset);
+    window.addEventListener('load', setHeroOffset);
+    if ('ResizeObserver' in window) {
+        const header = document.querySelector('.site-header');
+        if (header) new ResizeObserver(setHeroOffset).observe(header);
+    }
+}

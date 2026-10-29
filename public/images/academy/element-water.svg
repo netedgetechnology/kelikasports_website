@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 280" width="520" height="280" role="img" aria-label="Water: a breaking wave"><title>Water: a breaking wave</title><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5fafd"/><stop offset="1" stop-color="#dcecf7"/></linearGradient>
+<linearGradient id="wave" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fb2e3"/><stop offset=".45" stop-color="#1f74b4"/><stop offset="1" stop-color="#0b3c69"/></linearGradient>
+<linearGradient id="face" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d4a80"/><stop offset="1" stop-color="#2d8fd0"/></linearGradient>
+<linearGradient id="back" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fcbee"/><stop offset="1" stop-color="#3b8fc9"/></linearGradient>
+<filter id="ripple"><feTurbulence type="fractalNoise" baseFrequency=".008 .06" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="6"/></filter>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="5"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .12 0"/></filter></defs>
+<rect width="520" height="280" fill="url(#sky)"/>
+<path d="M0 168C70 150 120 160 180 150S300 130 360 142 470 150 520 140V280H0Z" fill="url(#back)" opacity=".7"/>
+<g filter="url(#ripple)">
+<path d="M0 214C70 204 128 168 176 126 214 92 262 66 312 68 352 70 372 98 356 120 346 134 324 134 316 120 312 110 320 102 330 104 318 92 296 94 284 108 300 140 340 168 398 180 446 190 486 186 520 182V280H0Z" fill="url(#wave)"/>
+<path d="M176 126C214 92 262 66 312 68 352 70 372 98 356 120 346 134 324 134 316 120 304 112 280 120 268 134 240 168 210 196 170 214 120 236 60 240 0 236V214C70 204 128 168 176 126Z" fill="url(#face)" opacity=".55"/>
+<path d="M0 238C80 230 150 236 220 226S360 206 430 214 500 222 520 218V280H0Z" fill="#0b3c69" opacity=".85"/>
+</g>
+<g fill="none" stroke="#fff" stroke-linecap="round"><path d="M186 120C222 88 264 70 306 72 340 74 360 94 354 112" stroke-width="4" opacity=".95"/><path d="M200 128C234 102 266 88 300 88" stroke-width="1.6" opacity=".6"/><path d="M30 226C80 218 130 222 180 212" stroke-width="2" opacity=".55"/><path d="M260 216C310 206 360 204 420 210" stroke-width="2" opacity=".5"/><path d="M380 182C420 188 460 186 500 180" stroke-width="1.6" opacity=".55"/></g>
+<g fill="#fff"><circle cx="332" cy="60" r="3.4" opacity=".9"/><circle cx="346" cy="52" r="2.2" opacity=".8"/><circle cx="318" cy="54" r="1.8" opacity=".8"/><circle cx="356" cy="64" r="1.6" opacity=".7"/><circle cx="364" cy="48" r="1.2" opacity=".7"/><circle cx="300" cy="58" r="1.4" opacity=".6"/><circle cx="372" cy="76" r="2" opacity=".7"/></g>
+<rect width="520" height="280" filter="url(#grain)"/></svg>

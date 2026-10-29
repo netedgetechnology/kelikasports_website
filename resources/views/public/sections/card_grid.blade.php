@@ -8,69 +8,77 @@
             : (str_contains($eyebrowLower, 'facilit')
                 ? 'facility-list'
                 : \Illuminate\Support\Str::slug($d['eyebrow'] ?? $d['title'] ?? 'cards')));
+
+    // Cards without their own image reuse the image of the program/facility/sport record with the same title.
+    $records = collect([$programs ?? collect(), $facilities ?? collect(), $sports ?? collect()])
+        ->flatten(1)
+        ->keyBy(fn ($record) => strtolower(trim($record->title)));
+    $badgeColors = ['var(--kelika-green)', 'var(--kelika-gold)', 'var(--kelika-terracotta)', '#1f3d4c'];
 @endphp
-
-<section class="section-pad" id="{{ $sectionId }}">
+@php
+    $sectionLayout = \App\Support\SectionDefaults::layout($section);
+@endphp
+@if ($sectionLayout !== 'grid')
+@include('public.sections.layouts.card_grid-'.$sectionLayout)
+@else
+<section class="kl-section kl-cards" id="{{ $sectionId }}">
     <div class="container">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+        <div class="kl-section-head">
             <div>
-                <p class="eyebrow">{{ $d['eyebrow'] ?? '' }}</p>
-
-                <h2 class="section-title">
-                    @foreach (explode('|', (string) ($d['title'] ?? '')) as $line)
-                        <span class="{{ $loop->index === 1 ? 'accent-terracotta' : ($loop->index === 2 ? 'accent-gold' : '') }}">{{ $line }}</span>
-                        @if (!$loop->last)
-                            <br>
-                        @endif
-                    @endforeach
-                </h2>
-
+                @if (!empty($d['eyebrow']))<p class="kl-kicker">{{ $d['eyebrow'] }}</p>@endif
+                @include('public.partials.heading', ['title' => $d['title'] ?? '', 'accent' => \App\Support\SectionDefaults::accent($section)])
                 @if (!empty($d['subtitle']))
-                    <p class="text-secondary mt-2 mb-0">{{ $d['subtitle'] }}</p>
+                    <p class="kl-muted mt-2 mb-0">{{ $d['subtitle'] }}</p>
                 @endif
             </div>
 
             @if (!empty($d['button_label']) && !empty($d['button_url']))
-                <a class="btn btn-kelika-outline" href="{{ $d['button_url'] }}">
-                    {{ $d['button_label'] }} →
+                <a class="kl-link-arrow" href="{{ $d['button_url'] }}">
+                    {{ $d['button_label'] }} {!! \App\Support\Icon::svg('arrow-right', 'kl-icon kl-icon--sm') !!}
                 </a>
             @endif
         </div>
 
-        <div class="row g-4">
+        <div class="row g-3 g-lg-4">
             @forelse (($d['items'] ?? []) as $item)
+                @php
+                    $record = $records->get(strtolower(trim((string) ($item['title'] ?? ''))));
+                    $recordData = $record?->data ?? [];
+                    $usesOwnImage = !empty($item['image']);
+                    $cardImage = \App\Support\Media::url($usesOwnImage ? $item['image'] : ($recordData['image'] ?? null));
+                    $cardMobileImage = \App\Support\Media::url($usesOwnImage ? ($item['mobile_image'] ?? null) : ($recordData['mobile_image'] ?? null));
+                    $cardAlt = $usesOwnImage ? ($item['image_alt'] ?? '') : ($recordData['image_alt'] ?? '');
+                    $cardPosition = ($usesOwnImage ? ($item['image_position'] ?? null) : ($recordData['image_position'] ?? null)) ?: 'center';
+                    $cardIcon = \App\Support\Icon::render($item['icon'] ?? ($recordData['icon'] ?? null), $item['title'] ?? '', 'kl-icon');
+                    $badgeColor = preg_match('/^#[0-9a-fA-F]{6}$/', (string) ($item['color'] ?? '')) ? $item['color'] : $badgeColors[$loop->index % count($badgeColors)];
+                    // Without an image the public card leads with its icon badge instead of an empty image box.
+                    $showMedia = $cardImage || ($preview ?? false);
+                @endphp
                 <div class="col-sm-6 col-lg-3">
-                    <article class="soft-card">
-                        @if (!empty($item['image']))
-                            <picture>
-                                @if (!empty($item['mobile_image']))
-                                    <source
-                                        media="(max-width: 767px)"
-                                        srcset="{{ str_starts_with($item['mobile_image'], 'http') || str_starts_with($item['mobile_image'], '/') ? $item['mobile_image'] : \Illuminate\Support\Facades\Storage::disk('public')->url($item['mobile_image']) }}">
-                                @endif
-
-                                <img
-                                    src="{{ str_starts_with($item['image'], 'http') || str_starts_with($item['image'], '/') ? $item['image'] : \Illuminate\Support\Facades\Storage::disk('public')->url($item['image']) }}"
-                                    class="w-100"
-                                    style="aspect-ratio:1.7;object-fit:cover;object-position:{{ $item['image_position'] ?? 'center' }}"
-                                    alt="{{ $item['image_alt'] ?? '' }}"
-                                    loading="lazy">
-                            </picture>
-                        @else
-                            @if ($preview ?? false)
+                    <article class="kl-card {{ $showMedia ? '' : 'kl-card--no-media' }}">
+                        <div class="kl-card__media">
+                            @if ($cardImage)
+                                <x-picture :image="$usesOwnImage ? $item['image'] : ($recordData['image'] ?? null)"
+                                           :mobile="$usesOwnImage ? ($item['mobile_image'] ?? null) : ($recordData['mobile_image'] ?? null)"
+                                           :alt="$cardAlt" :img-style="'object-position:'.$cardPosition" sizes="(min-width: 1400px) 420px, (min-width: 992px) 32vw, (min-width: 576px) 60vw, 100vw" mobile-sizes="(min-width: 1400px) 420px, (min-width: 992px) 32vw, (min-width: 576px) 60vw, 100vw" :dimensions="true" />
+                            @elseif ($preview ?? false)
                                 <div class="image-placeholder">Select card image in CMS</div>
-                            @else
-                                <div class="image-placeholder" aria-hidden="true"></div>
                             @endif
-                        @endif
+                            @if ($cardIcon)
+                                <span class="kl-card__badge" style="background:{{ $badgeColor }}">{!! $cardIcon !!}</span>
+                            @endif
+                        </div>
 
-                        <div class="card-body">
-                            <h3 class="h5 fw-bold">{{ $item['title'] ?? '' }}</h3>
-                            <p class="text-secondary small mb-3">{{ $item['description'] ?? '' }}</p>
-
+                        <div class="kl-card__body">
+                            <div>
+                                <h3 class="kl-card__title">{{ $item['title'] ?? '' }}</h3>
+                                @if (!empty($item['description']))
+                                    <p class="kl-card__text">{{ $item['description'] }}</p>
+                                @endif
+                            </div>
                             @if (!empty($item['url']))
-                                <a href="{{ $item['url'] }}" class="fw-bold text-decoration-none">
-                                    {{ $item['link_label'] ?? 'Explore' }} →
+                                <a href="{{ $item['url'] }}" class="kl-circle-link stretched-link" aria-label="{{ ($item['link_label'] ?? 'Explore') . ' ' . ($item['title'] ?? '') }}">
+                                    {!! \App\Support\Icon::svg('arrow-right', 'kl-icon kl-icon--sm') !!}
                                 </a>
                             @endif
                         </div>
@@ -79,12 +87,11 @@
             @empty
                 @if ($preview ?? false)
                     <div class="col-12">
-                        <div class="empty-state">
-                            No cards have been added to this section yet. Add them in the CMS.
-                        </div>
+                        <div class="empty-state">No cards have been added to this section yet. Add them in the CMS.</div>
                     </div>
                 @endif
             @endforelse
         </div>
     </div>
 </section>
+@endif

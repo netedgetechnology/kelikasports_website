@@ -1,0 +1,10 @@
+Homepage photography (stored locally; no hotlinking). Sourced 2026-10-25.
+
+stats-shuttlecock.jpg            rawpixel "Free badminton racket shuttlecock image" (px1060824), CC0 1.0 — cropped, mirrored
+event-winter-championship.jpg    rawpixel "Badminton. Original public domain image" (wk50102532), CC0 1.0 — cropped
+event-youth-training-camp.jpg    Unsplash photo-1780233689566-55045608bd17, Unsplash License — cropped
+event-inter-academy-tournament.jpg rawpixel "Badminton shuttlecock cork game" (frbadminton_shuttlecock_cork_game), CC0 1.0 — cropped
+cta-badminton-background.jpg     rawpixel px1122025 (shuttlecock on rackets, warm light), CC0 1.0 — mirrored, extended left with a blurred teal fill to 2000x750
+hero-player.jpg / hero-player-mobile.jpg  Unsplash photo-1722087642932-9b070e9a066e, Unsplash License — kit recoloured (shirt green, shorts black, shoes white), third-party chest logo removed; desktop extended to 3:2 with blurred background
+
+Stock/stand-in images for the development reference build, not photographs of KELIKA facilities or events.

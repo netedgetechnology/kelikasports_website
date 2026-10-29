@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 240" width="420" height="240" role="img" aria-label="Basketball on an indoor court"><title>Basketball on an indoor court</title><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe9ee"/><stop offset=".55" stop-color="#c7dbe4"/><stop offset=".56" stop-color="#2f6f8c"/><stop offset="1" stop-color="#1f5570"/></linearGradient>
+<radialGradient id="ball" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#e98a4f"/><stop offset=".6" stop-color="#c4562a"/><stop offset="1" stop-color="#8e3615"/></radialGradient><filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter></defs>
+<rect width="420" height="240" fill="url(#bg)"/><path d="M0 170 420 150M60 240 150 134M360 240 300 132" stroke="#e8eef1" stroke-width="3" opacity=".7"/>
+<ellipse cx="214" cy="212" rx="70" ry="12" fill="#0d2f40" opacity=".55" filter="url(#sh)"/>
+<circle cx="210" cy="140" r="70" fill="url(#ball)"/>
+<g fill="none" stroke="#3b1a0b" stroke-width="3.2" stroke-linecap="round"><path d="M140 140h140"/><path d="M210 70v140"/><path d="M161 90c26 18 26 82 0 100"/><path d="M259 90c-26 18-26 82 0 100"/></g></svg>

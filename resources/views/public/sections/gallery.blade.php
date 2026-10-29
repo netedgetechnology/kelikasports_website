@@ -1,6 +1,10 @@
 @php
     $d = $section->data ?? [];
-
+@endphp
+@if (\App\Support\SectionDefaults::layout($section) === 'strip')
+@include('public.sections.layouts.gallery-strip')
+@else
+@php
     $galleryItems = ! empty($d['items'])
         ? $d['items']
         : ($galleries ?? collect())->map(fn ($item) => [
@@ -11,6 +15,8 @@
         ])->all();
 @endphp
 
+{{-- No gallery images yet: visitors see nothing; CMS preview shows where to add them. --}}
+@if ($galleryItems || ($preview ?? false))
 <section class="section-pad">
     <div class="container">
         <div class="d-flex justify-content-between align-items-end gap-3 mb-4">
@@ -28,24 +34,15 @@
             </div>
         </div>
 
+        @if (! $galleryItems)
+            @include('public.partials.preview-note', ['message' => 'No gallery images yet — this section is hidden from visitors until images are added.'])
+        @endif
         <div class="row g-3">
             @foreach ($galleryItems as $item)
                 <div class="col-6 col-lg-3">
                     @if (! empty($item['image']))
-                        <picture>
-                            @if (! empty($item['mobile_image']))
-                                <source
-                                    media="(max-width: 767px)"
-                                    srcset="{{ str_starts_with($item['mobile_image'], 'http') || str_starts_with($item['mobile_image'], '/') ? $item['mobile_image'] : \Illuminate\Support\Facades\Storage::disk('public')->url($item['mobile_image']) }}">
-                            @endif
-
-                            <img
-                                class="w-100 rounded-3"
-                                style="aspect-ratio: 1.3; object-fit: cover"
-                                src="{{ str_starts_with($item['image'], 'http') || str_starts_with($item['image'], '/') ? $item['image'] : \Illuminate\Support\Facades\Storage::disk('public')->url($item['image']) }}"
-                                alt="{{ $item['image_alt'] ?? '' }}"
-                                loading="lazy">
-                        </picture>
+                        <x-picture :image="$item['image']" :mobile="$item['mobile_image'] ?: null" img-class="w-100 rounded-3" img-style="aspect-ratio: 1.3; object-fit: cover"
+                                   :alt="$item['image_alt'] ?? ''" sizes="(min-width: 992px) 32vw, 60vw" mobile-sizes="60vw" />
                     @elseif ($preview ?? false)
                         <div class="image-placeholder rounded-3">Add gallery image</div>
                     @else
@@ -60,3 +57,5 @@
         </div>
     </div>
 </section>
+@endif
+@endif

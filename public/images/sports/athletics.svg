@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 240" width="420" height="240" role="img" aria-label="Running shoe on an athletics track"><title>Running shoe on an athletics track</title><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9643f"/><stop offset="1" stop-color="#a24a2b"/></linearGradient><filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter></defs>
+<rect width="420" height="240" fill="url(#bg)"/>
+<g stroke="#f7efe8" stroke-width="4" fill="none" opacity=".9"><path d="M-40 60C120 40 300 80 460 50"/><path d="M-40 108C120 88 300 128 460 98"/><path d="M-40 156C120 136 300 176 460 146"/><path d="M-40 204C120 184 300 224 460 194"/><path d="M-40 252C120 232 300 272 460 242"/></g>
+<g fill="#f7efe8" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="26" opacity=".85"><text x="40" y="100">1</text><text x="44" y="148">2</text><text x="48" y="196">3</text></g>
+<path d="M330 40v172M346 40v172" stroke="#fff" stroke-width="3" opacity=".9"/>
+<g transform="translate(150 118)"><ellipse cx="70" cy="60" rx="90" ry="10" fill="#5a2210" opacity=".5" filter="url(#sh)"/>
+<path d="M0 46c8-22 36-34 64-34 14 0 22-10 34-10 16 0 28 14 46 22 14 6 24 14 24 26 0 6-4 10-12 10H8c-6 0-10-6-8-14z" fill="#22303a"/>
+<path d="M2 52h176" stroke="#f2f2f2" stroke-width="7" stroke-linecap="round"/><path d="M66 18l10 18M82 14l10 18M98 12l10 18" stroke="#f2f2f2" stroke-width="3" stroke-linecap="round"/><path d="M120 22c14 10 30 16 48 22" stroke="#3f8f6a" stroke-width="4" fill="none"/></g></svg>

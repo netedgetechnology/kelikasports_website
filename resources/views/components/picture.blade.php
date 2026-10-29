@@ -1,0 +1,12 @@
+{{--
+    Responsive image. Renders, in order: the mobile image (WebP copies, then its original), the desktop WebP copies,
+    and the original as the <img> fallback. Browsers download exactly one of them; missing copies are simply left out.
+
+    image, mobile        CMS image values (media path, /images/… path or URL); mobile is optional (art direction)
+    alt, img-class       <img> attributes; img-style carries the focal position (object-position / --kl-hero-pos)
+    sizes, mobile-sizes  rendered width of the image, desktop / below 768px; generous, since cover-fitted images can
+                         be drawn wider than their box
+    loading              "lazy" (default), or "none" to leave the attribute out (eager, like the hero and logos); fetchpriority e.g. "high" for the hero
+    picture-class        class on <picture>; contents makes <picture> layout-neutral where a bare <img> used to be
+    dimensions           add width/height, only where CSS sets both, so they act purely as an aspect-ratio hint
+--}}@props(['image' => null, 'mobile' => null, 'alt' => '', 'imgClass' => null, 'imgStyle' => null, 'sizes' => '100vw', 'mobileSizes' => '100vw', 'loading' => 'lazy', 'fetchpriority' => null, 'pictureClass' => null, 'contents' => false, 'dimensions' => false])@php($pictureMobile = ! empty($mobile) ? \App\Support\Media::responsive($mobile) : null)@if ($pictureImage = \App\Support\Media::responsive($image))<picture @if($pictureClass) class="{{ $pictureClass }}" @endif @if($contents) style="display:contents" @endif>@if ($pictureMobile)@if ($pictureMobile['webp'])<source media="(max-width: 767px)" type="image/webp" srcset="{{ $pictureMobile['webp'] }}" sizes="{{ $mobileSizes }}">@endif<source media="(max-width: 767px)" srcset="{{ $pictureMobile['srcset'] ?? $pictureMobile['src'] }}" @if ($pictureMobile['srcset']) sizes="{{ $mobileSizes }}" @endif>@endif{!! $pictureImage['webp'] ? '<source type="image/webp" srcset="'.e($pictureImage['webp']).'" sizes="'.e($sizes).'">' : '' !!}<img @if($imgClass) class="{{ $imgClass }}" @endif src="{{ $pictureImage['src'] }}" @if ($pictureImage['srcset']) srcset="{{ $pictureImage['srcset'] }}" sizes="{{ $sizes }}" @endif alt="{{ $alt }}" @if($imgStyle) style="{{ $imgStyle }}" @endif @if ($dimensions && $pictureImage['width'] && $pictureImage['height']) width="{{ $pictureImage['width'] }}" height="{{ $pictureImage['height'] }}" @endif @if ($loading && $loading !== 'none') loading="{{ $loading }}" @endif @if($fetchpriority) fetchpriority="{{ $fetchpriority }}" @endif></picture>@endif

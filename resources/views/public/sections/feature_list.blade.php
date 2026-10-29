@@ -1,2 +1,35 @@
-@php($d=$section->data ?? [])
-<section class="section-pad"><div class="container"><div class="row g-4 align-items-start"><div class="col-lg-4"><p class="eyebrow">{{ $d['eyebrow'] ?? '' }}</p><h2 class="section-title">@foreach(explode('|',(string)($d['title'] ?? '')) as $line)<span class="{{ $loop->index===1 ? 'accent-terracotta' : ($loop->index===2 ? 'accent-gold' : '') }}">{{ $line }}</span>@if(!$loop->last)<br>@endif @endforeach</h2>@if(!empty($d['body']))<p class="text-secondary mt-3">{{ $d['body'] }}</p>@endif</div><div class="col-lg-8"><div class="row g-4">@foreach(($d['items'] ?? []) as $item)<div class="col-sm-6"><div class="d-flex gap-3"><span class="feature-icon" aria-hidden="true">{{ $item['icon'] ?? '✦' }}</span><div><h3 class="h6 fw-bold">{{ $item['title'] ?? '' }}</h3><p class="text-secondary small mb-0">{{ $item['description'] ?? '' }}</p></div></div></div>@endforeach</div></div></div></div></section>
+@php($d = \App\Support\SectionDefaults::apply($section))
+@php($sectionLayout = \App\Support\SectionDefaults::layout($section))
+@if ($sectionLayout !== 'columns')
+@include('public.sections.layouts.feature_list-'.$sectionLayout)
+@else
+@php($iconColors = ['var(--kelika-terracotta)', 'var(--kelika-terracotta)', 'var(--kelika-green)'])
+<section class="kl-section kl-features">
+    <div class="container">
+        <div class="row g-4 g-xl-5 align-items-start">
+            <div class="col-lg-4">
+                @if (!empty($d['eyebrow']))<p class="kl-kicker">{{ $d['eyebrow'] }}</p>@endif
+                @include('public.partials.heading', ['title' => $d['title'] ?? '', 'accent' => \App\Support\SectionDefaults::accent($section), 'class' => 'kl-heading kl-heading--bold'])
+                @if (!empty($d['body']))<p class="kl-muted mt-3">{{ $d['body'] }}</p>@endif
+                @if (!empty($d['button_label']))
+                    <a class="btn btn-kelika mt-3" href="{{ \App\Support\SafeUrl::isSafe($d['button_url'] ?? null) && !empty($d['button_url']) ? $d['button_url'] : route('page.show', ['slug' => 'about']) }}">
+                        {{ $d['button_label'] }} {!! \App\Support\Icon::svg('arrow-right', 'kl-icon kl-icon--sm') !!}
+                    </a>
+                @endif
+            </div>
+            <div class="col-lg-8">
+                <ul class="kl-feature-grid">
+                    @foreach (($d['items'] ?? []) as $item)
+                        @php($featureColor = preg_match('/^#[0-9a-fA-F]{6}$/', (string) ($item['color'] ?? '')) ? $item['color'] : $iconColors[$loop->index % count($iconColors)])
+                        <li class="kl-feature">
+                            <span class="kl-feature__icon" style="color:{{ $featureColor }}">{!! \App\Support\Icon::render($item['icon'] ?? null, $item['title'] ?? '', 'kl-icon kl-icon--xl') ?: \App\Support\Icon::svg('check', 'kl-icon kl-icon--xl') !!}</span>
+                            <h3 class="kl-feature__title">{{ $item['title'] ?? '' }}</h3>
+                            @if (!empty($item['description']))<p class="kl-feature__text">{{ $item['description'] }}</p>@endif
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+@endif

@@ -20,48 +20,59 @@
 <body class="admin-shell">
 <div class="container-fluid">
     <div class="row g-0">
-        <aside class="col-lg-2 admin-sidebar">
-            <div class="admin-brand">
-                KELIKA
-                <small class="d-block fw-normal" style="font-size:.65rem;letter-spacing:.14em">
-                    CONTENT STUDIO
-                </small>
-            </div>
+        @php($adminBranding = \App\Support\AdminBranding::current())
+        @php($navLinks = [
+            ['Overview', route('admin.dashboard'), request()->routeIs('admin.dashboard')],
+            ['Pages & Sections', route('admin.pages.index'), request()->routeIs('admin.pages.*')],
+            ['Media Library', route('admin.media.index'), request()->routeIs('admin.media.*')],
+            ['Menus', route('admin.menus.index'), request()->routeIs('admin.menus.*')],
+            ['Global Settings', route('admin.settings.edit'), request()->routeIs('admin.settings.*')],
+            ['URL Redirects', route('admin.redirects.index'), request()->routeIs('admin.redirects.*')],
+        ])
+        <aside class="col-lg-2 admin-sidebar" style="{{ \App\Support\AdminBranding::sidebarStyle() }}" data-admin-sidebar>
+            <a class="admin-brand" href="{{ route('admin.dashboard') }}">
+                @if ($adminBranding['logo'])
+                    <img class="admin-brand__logo" src="{{ $adminBranding['logo'] }}" alt="KELIKA CMS">
+                @else
+                    <span class="admin-brand__name">KELIKA</span>
+                @endif
+                <small class="admin-brand__caption">Content Studio</small>
+            </a>
 
             <nav aria-label="CMS navigation">
-                <a href="{{ route('admin.dashboard') }}">Overview</a>
-                <a href="{{ route('admin.pages.index') }}">Pages &amp; Sections</a>
-                <a href="{{ route('admin.media.index') }}">Media Library</a>
-                <a href="{{ route('admin.menus.index') }}">Menus</a>
-                <a href="{{ route('admin.settings.edit') }}">Global Settings</a>
-                <a href="{{ route('admin.redirects.index') }}">URL Redirects</a>
-
-                <div class="text-uppercase small opacity-75 px-3 mt-4 mb-2">Content</div>
-
-                @foreach (['sport' => 'Sports', 'program' => 'Programs', 'facility' => 'Facilities', 'event' => 'Events', 'coach' => 'Coaches', 'faq' => 'FAQs', 'gallery' => 'Galleries', 'testimonial' => 'Testimonials'] as $type => $label)
-                    <a href="{{ route('admin.content.index', $type) }}">{{ $label }}</a>
+                @foreach ($navLinks as [$label, $url, $active])
+                    <a href="{{ $url }}" @class(['active' => $active]) @if ($active) aria-current="page" @endif>{{ $label }}</a>
                 @endforeach
 
-                <a href="{{ route('admin.enquiries.index') }}">Enquiries</a>
+                <div class="admin-nav-heading">Content</div>
+
+                @foreach (['sport' => 'Sports', 'program' => 'Programs', 'facility' => 'Facilities', 'event' => 'Events', 'coach' => 'Coaches', 'faq' => 'FAQs', 'gallery' => 'Galleries', 'testimonial' => 'Testimonials'] as $type => $label)
+                    @php($active = request()->routeIs('admin.content.*') && request()->route('type') === $type)
+                    <a href="{{ route('admin.content.index', $type) }}" @class(['active' => $active]) @if ($active) aria-current="page" @endif>{{ $label }}</a>
+                @endforeach
+
+                @php($active = request()->routeIs('admin.enquiries.*'))
+                <a href="{{ route('admin.enquiries.index') }}" @class(['active' => $active]) @if ($active) aria-current="page" @endif>Enquiries</a>
 
                 @if (auth()->user()->isAdministrator())
-                    <a href="{{ route('admin.users.index') }}">CMS Users</a>
+                    @php($active = request()->routeIs('admin.users.*'))
+                    <a href="{{ route('admin.users.index') }}" @class(['active' => $active]) @if ($active) aria-current="page" @endif>CMS Users</a>
                 @endif
 
                 <a href="{{ route('home') }}" target="_blank" rel="noopener">View Website ↗</a>
             </nav>
 
-            <form method="post" action="{{ route('logout') }}" class="mt-4 px-2">
+            <form method="post" action="{{ route('logout') }}" class="admin-signout">
                 @csrf
-                <button type="submit" class="btn btn-sm btn-outline-light w-100">Sign out</button>
+                <button type="submit" class="btn btn-sm admin-sidebar-button w-100">Sign out</button>
             </form>
         </aside>
 
         <main class="col-lg-10 admin-main">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-4">
+            <div class="admin-header d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-1">
                 <div>
-                    <p class="eyebrow mb-1">KELIKA CMS</p>
-                    <h1 class="h3 fw-bold mb-0">@yield('heading', 'Dashboard')</h1>
+                    <p class="eyebrow mb-0">KELIKA CMS</p>
+                    <h1 class="h4 fw-bold mb-0">@yield('heading', 'Dashboard')</h1>
                 </div>
                 <div class="small text-secondary">
                     Signed in as {{ auth()->user()->name }}

@@ -3,6 +3,8 @@
         Options -MultiViews -Indexes
     </IfModule>
     RewriteEngine On
+    # Uploaded media under /storage is static only: refuse script and server-config files there.
+    RewriteRule ^storage/.*\.(php[0-9]?|phar|phtml|pht|cgi|pl|py|sh|shtml|asp|aspx|jsp|htaccess|htpasswd)$ - [F,NC]
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
     RewriteCond %{HTTP:x-xsrf-token} .
