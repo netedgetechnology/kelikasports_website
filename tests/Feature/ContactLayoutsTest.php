@@ -69,7 +69,8 @@ class ContactLayoutsTest extends TestCase
         $this->assertStringContainsString('<span class="kl-heading__highlight">Touch</span>', $html);
         // Location column: copy from the Location section; only the configured phone; no map, address, email or hours.
         $this->assertStringContainsString('<p class="kl-contact__intro">Contact our team to arrange a visit.</p>', $html);
-        $this->assertStringContainsString('<a href="tel:7874028876">7874028876</a>', $html);
+        // A bare 10-digit Indian number is shown grouped with the country code, as in the reference.
+        $this->assertStringContainsString('<a href="tel:+917874028876">+91 78740 28876</a>', $html);
         $this->assertStringContainsString('Location details will be shared here soon.', $html);
         foreach (['<iframe', 'Get Directions', 'Email Us', 'Visit Hours', 'mailto:', 'kl-contact__address'] as $absent) $this->assertStringNotContainsString($absent, $html);
         // The Location section is not shown a second time on its own.
@@ -84,11 +85,63 @@ class ContactLayoutsTest extends TestCase
         $html = $this->html();
         $this->assertStringContainsString('<iframe title="KELIKA location map" src="'.e($map).'"', $html);
         $this->assertMatchesRegularExpression('#href="'.preg_quote(e($map), '#').'" target="_blank" rel="noopener noreferrer">Get Directions#', $html);
-        $this->assertStringContainsString('Sports Complex<br />', $html);
+        $this->assertStringContainsString('<strong class="kl-contact__address-name">Sports Complex</strong><br>City', $html);
         $this->assertStringContainsString('<a href="tel:+917874028876">+91 78740 28876</a>', $html);
         $this->assertStringContainsString('<a href="mailto:hello@example.test">hello@example.test</a>', $html);
         $this->assertStringContainsString('<h3 class="kl-contact__detail-title">Visit Hours</h3><p>Mon – Sun</p>', $html);
         $this->assertStringNotContainsString('Location details will be shared here soon.', $html);
+    }
+    public function test_without_a_map_url_the_address_is_shown_but_no_directions_link_is_invented(): void
+    {
+        $this->settings(['contact_address' => "KELIKA Sports Complex\nNear Science City, Sola\nAhmedabad, Gujarat, India"]);
+        $this->formAndLocation();
+        $html = $this->html();
+        $this->assertStringContainsString('<p class="kl-contact__address-text"><strong class="kl-contact__address-name">KELIKA Sports Complex</strong><br>Near Science City, Sola<br>Ahmedabad, Gujarat, India</p>', $html);
+        foreach (['Get Directions', 'google.com/maps', '<iframe', 'kl-contact__map-text'] as $absent) $this->assertStringNotContainsString($absent, $html);
+        $this->assertStringContainsString('kl-contact__map--empty', $html);
+    }
+    public function test_address_and_map_url_saved_in_cms_settings_appear_on_the_contact_page(): void
+    {
+        $this->actingAs(User::create(['name' => 'Admin', 'email' => 'admin@example.test', 'password' => 'correct-horse-battery-staple', 'role' => 'administrator', 'is_active' => true]));
+        $this->get(route('admin.settings.edit'))->assertOk()->assertSee('id="contact_address" name="contact_address"', false)->assertSee('id="map_url" name="map_url"', false);
+        $colors = array_fill_keys(['primary_color', 'terracotta_color', 'gold_color', 'earth_color', 'water_color', 'fire_color', 'air_color', 'space_color'], '#123abc');
+        $map = 'https://maps.example.test/place/kelika';
+        $this->put(route('admin.settings.update'), $colors + ['site_name' => 'KELIKA', 'booking_button_label' => 'Book a Court', 'font_family' => 'Inter', 'button_style' => 'square',
+            'contact_address' => "Venue Name\nArea\nCity", 'map_url' => $map])->assertSessionHasNoErrors();
+        auth()->logout();
+        $this->formAndLocation();
+        $html = $this->html();
+        $this->assertStringContainsString('<strong class="kl-contact__address-name">Venue Name</strong><br>Area<br>City', $html);
+        $this->assertStringContainsString('<a class="btn btn-kelika-outline kl-contact__directions" href="'.$map.'" target="_blank" rel="noopener noreferrer">Get Directions', $html);
+        // A link that is not a Google Maps embed opens directions but does not replace the placeholder with a map.
+        $this->assertStringNotContainsString('<iframe', $html);
+    }
+    public function test_a_single_line_address_is_shown_without_a_bold_name(): void
+    {
+        $this->settings(['contact_address' => 'Sola, Ahmedabad']);
+        $this->formAndLocation();
+        $html = $this->html();
+        $this->assertStringContainsString('<p class="kl-contact__address-text">Sola, Ahmedabad</p>', $html);
+        $this->assertStringNotContainsString('kl-contact__address-name', $html);
+    }
+    public function test_phone_hours_email_note_and_bracketed_hours_appear_as_notes_under_their_details(): void
+    {
+        $this->settings(['contact_phone' => '7874028876', 'contact_phone_hours' => "Mon – Sun\n8:00 AM – 9:00 PM", 'contact_email' => 'info@example.test', 'contact_email_note' => 'We usually respond within 24 hours', 'opening_hours' => "Mon – Sun\n6:00 AM – 10:00 PM\n(Subject to bookings)"]);
+        $this->formAndLocation();
+        $html = $this->html();
+        $this->assertStringContainsString('<a href="tel:+917874028876">+91 78740 28876</a><p class="kl-contact__detail-note">Mon – Sun<br />'."\n".'8:00 AM – 9:00 PM</p>', $html);
+        $this->assertStringContainsString('<a href="mailto:info@example.test">info@example.test</a><p class="kl-contact__detail-note">We usually respond within 24 hours</p>', $html);
+        $this->assertStringContainsString('<h3 class="kl-contact__detail-title">Visit Hours</h3><p>Mon – Sun<br>6:00 AM – 10:00 PM</p><p class="kl-contact__detail-note">(Subject to bookings)</p>', $html);
+    }
+    public function test_notes_are_left_out_when_not_set_and_other_phone_formats_are_kept(): void
+    {
+        $this->settings(['contact_phone' => '+44 20 7946 0000', 'contact_email' => 'info@example.test', 'opening_hours' => "(By appointment)\nWeekdays"]);
+        $this->formAndLocation();
+        $html = $this->html();
+        $this->assertStringContainsString('<a href="tel:+442079460000">+44 20 7946 0000</a></div>', $html);
+        $this->assertStringContainsString('<a href="mailto:info@example.test">info@example.test</a></div>', $html);
+        // Line order is kept when a bracketed line comes first.
+        $this->assertStringContainsString('<p class="kl-contact__detail-note">(By appointment)</p><p>Weekdays</p>', $html);
     }
     public function test_a_topic_in_the_url_preselects_the_subject_and_unknown_topics_are_ignored(): void
     {

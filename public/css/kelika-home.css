@@ -1233,23 +1233,58 @@
 .kl-contact__map--empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; padding: 1.5rem; text-align: center; aspect-ratio: auto; min-height: 12rem; background: radial-gradient(circle at 30% 20%, #f7f4ee, #e3ebe5); }
 .kl-contact__map-icon { line-height: 0; color: var(--kelika-terracotta); }
 .kl-contact__map-text { max-width: 22rem; margin: 0; font-size: .92rem; line-height: 1.5; color: #3d4845; }
-.kl-contact__address { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.25rem; margin-top: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--kelika-line); }
-.kl-contact__address-icon { flex: none; line-height: 0; color: var(--kelika-terracotta); }
-.kl-contact__address-text { flex: 1 1 12rem; margin: 0; font-size: .92rem; line-height: 1.5; color: var(--kl-ink); }
-.kl-contact__details { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1.25rem; }
-.kl-contact__details li { display: flex; align-items: flex-start; gap: .75rem; }
-.kl-contact__detail-icon { flex: none; line-height: 0; color: var(--kelika-terracotta); }
-.kl-contact__detail-icon .kl-icon { width: 1.5rem; height: 1.5rem; }
-.kl-contact__detail-title { margin: 0 0 .2rem; font-size: .9rem; font-weight: 700; color: var(--kl-ink); }
-.kl-contact__details a, .kl-contact__details p { margin: 0; font-size: .88rem; line-height: 1.5; color: #3d4845; text-decoration: none; }
+/* Address row: pin and address on the left, Get Directions on the right; the button drops below on narrow screens. */
+.kl-contact__address { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem .75rem; margin-top: 1.25rem; padding-bottom: .95rem; border-bottom: 1px solid var(--kelika-line); }
+.kl-contact__address-icon { flex: none; align-self: flex-start; margin: .1rem 0 0 .35rem; line-height: 0; color: var(--kelika-terracotta); }
+.kl-contact__address-icon .kl-icon { width: 3.25rem; height: 3.25rem; }
+.kl-contact__address-text { flex: 1 1 12rem; min-width: 0; margin: 0; font-size: 1rem; line-height: 1.55; color: #3d4845; overflow-wrap: break-word; }
+.kl-contact__address-name { font-weight: 700; color: var(--kl-ink); }
+/* A thin, lighter green outline, as in the reference (scoped to win over the shared .btn-kelika-outline rule). */
+.kl-contact .kl-contact__directions { flex: none; margin-left: auto; padding: .95rem 1.9rem; border: 1px solid color-mix(in srgb, var(--kelika-green) 55%, transparent); font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+@media (max-width: 575.98px) {
+    /* Phones: the button sits under the address text, lined up with it (icon width + gap). */
+    .kl-contact .kl-contact__directions { margin-left: 4.35rem; }
+}
+/* Contact details: a stacked list on phones; from 576px one equal column per detail split by thin separators. The
+   list is a size container, so when its columns get narrow (under about 200px, e.g. the desktop column below 1400px)
+   the icon moves above the text instead of squeezing it. */
+.kl-contact__details { container-type: inline-size; list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); }
+.kl-contact__details li { display: flex; align-items: flex-start; gap: .7rem; min-width: 0; padding: 1rem 0; }
+.kl-contact__details li:first-child { padding-top: 0; }
+.kl-contact__details li:last-child { padding-bottom: 0; }
+.kl-contact__details li + li { border-top: 1px solid var(--kelika-line); }
+.kl-contact__details li > div { min-width: 0; overflow-wrap: break-word; }
+/* The reference's icons are a warm orange between the brand gold and terracotta. */
+.kl-contact__detail-icon { flex: none; margin: -.2rem 0 0 .25rem; line-height: 0; color: var(--kelika-gold); color: color-mix(in srgb, var(--kelika-gold) 55%, var(--kelika-terracotta)); }
+.kl-contact__detail-icon .kl-icon { width: 2.35rem; height: 2.35rem; }
+.kl-contact__detail-title { margin: 0 0 .1rem; font-size: .9rem; font-weight: 700; line-height: 1.5; color: var(--kl-ink); }
+.kl-contact__details a, .kl-contact__details p { display: block; margin: 0; font-size: .9rem; line-height: 1.5; color: #3d4845; text-decoration: none; }
 .kl-contact__details a:hover { color: var(--kelika-terracotta); }
+.kl-contact__details .kl-contact__detail-note { margin-top: .55rem; font-size: .8rem; line-height: 1.5; color: #3d4845; }
+.kl-contact__details p + .kl-contact__detail-note { margin-top: .1rem; }
 @media (min-width: 576px) {
     .kl-contact__fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .kl-contact__field--wide { grid-column: 1 / -1; }
+    .kl-contact__details { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: minmax(0, 1fr); }
+    .kl-contact__details li { padding: 0 .6rem; }
+    .kl-contact__details li:first-child { padding-left: 0; }
+    .kl-contact__details li:last-child { padding-right: 0; }
+    .kl-contact__details li + li { border-top: 0; border-left: 1px solid var(--kelika-line); }
+    @container (max-width: 37rem) {
+        .kl-contact__details li { flex-direction: column; gap: .45rem; }
+    }
+    /* The narrowest desktop column (992-1199px): slightly smaller text keeps a time range such as 6:00 AM – 10:00 PM on one line. */
+    @container (max-width: 29rem) {
+        .kl-contact__details a, .kl-contact__details p { font-size: .84rem; }
+        .kl-contact__details .kl-contact__detail-note { font-size: .76rem; }
+    }
 }
 @media (min-width: 992px) {
-    .kl-contact__grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: clamp(2rem, 3.5vw, 3.5rem); align-items: start; }
-    .kl-contact__location { padding-top: .75rem; }
+    /* The location column matches the form panel's height: the map takes up the spare height, so the details row
+       sits level with the bottom of the form instead of leaving a gap below it. */
+    .kl-contact__grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: clamp(2rem, 3.5vw, 3.5rem); align-items: stretch; }
+    .kl-contact__location { display: flex; flex-direction: column; padding-top: .75rem; }
+    .kl-contact__map { flex: 1 0 auto; }
     .kl-contact__map--empty { min-height: 14rem; }
 }
 

@@ -43,7 +43,10 @@ class SettingsController extends Controller
             'air_color' => ['required', 'regex:/^#[0-9a-fA-F]{6}$/'],
             'space_color' => ['required', 'regex:/^#[0-9a-fA-F]{6}$/'],
             'contact_phone' => ['nullable', 'string', 'max:60'],
+            // Short notes shown under the phone number and email on the Contact page (e.g. call hours, reply time).
+            'contact_phone_hours' => ['nullable', 'string', 'max:300'],
             'contact_email' => ['nullable', 'email', 'max:190'],
+            'contact_email_note' => ['nullable', 'string', 'max:300'],
             // Checked the way the contact form checks it before sending, so an accepted address is always notified.
             'contact_notification_email' => ['nullable', 'email:rfc,filter', 'max:190'],
             'contact_address' => ['nullable', 'string', 'max:500'],
@@ -112,7 +115,7 @@ class SettingsController extends Controller
             'favicon_url' => 'branding', 'social_image_url' => 'branding', 'primary_color' => 'branding',
             'terracotta_color' => 'branding', 'gold_color' => 'branding', 'earth_color' => 'branding',
             'water_color' => 'branding', 'fire_color' => 'branding', 'air_color' => 'branding', 'space_color' => 'branding',
-            'contact_phone' => 'contact', 'contact_email' => 'contact', 'contact_notification_email' => 'contact',
+            'contact_phone' => 'contact', 'contact_phone_hours' => 'contact', 'contact_email' => 'contact', 'contact_email_note' => 'contact', 'contact_notification_email' => 'contact',
             'contact_address' => 'contact', 'opening_hours' => 'contact', 'map_url' => 'contact', 'booking_url' => 'general',
             'instagram_url' => 'social', 'facebook_url' => 'social', 'youtube_url' => 'social', 'linkedin_url' => 'social', 'x_url' => 'social', 'terms_page' => 'general', 'privacy_page' => 'general',
             'admin_logo_url' => 'cms', 'admin_sidebar_color' => 'cms',

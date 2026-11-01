@@ -2,7 +2,9 @@
      the same route with the same fields, CSRF token, honeypot and validation messages as the default layout; the subject
      can be preselected with ?topic=… (one of the listed topics). The location column takes its heading and text from this
      page's Location section when it uses the "beside" layout, and shows only contact details configured in Site
-     Settings: the map and Get Directions only with a map URL, each detail only when it is set. --}}
+     Settings: the map and Get Directions only with a map URL, each detail only when it is set. An address of several
+     lines starts with the place name, shown in bold. A bare 10-digit Indian number is shown as +91 XXXXX XXXXX like the
+     reference; a line of the opening hours in brackets is shown as a note. --}}
 @php
     $d = $section->data ?? [];
     $topics = ['Programs Enquiry', 'Court Booking', 'Events & Tournaments', 'Membership', 'Partnerships', 'Other'];
@@ -11,11 +13,19 @@
     $l = $location?->data ?? [];
     $mapUrl = ($l['map_url'] ?? '') ?: ($siteSettings['map_url'] ?? '');
     $mapIsEmbed = \App\Support\SafeUrl::isGoogleMapsEmbed($mapUrl);
-    $directionsUrl = $mapUrl && filter_var($mapUrl, FILTER_VALIDATE_URL) ? $mapUrl : null;
     $address = trim((string) ($siteSettings['contact_address'] ?? ''));
+    $addressLines = collect(preg_split('/\R/', $address))->map(fn ($line) => trim($line))->filter()->values();
+    $directionsUrl = $mapUrl && filter_var($mapUrl, FILTER_VALIDATE_URL) ? $mapUrl : null;
     $phone = trim((string) ($siteSettings['contact_phone'] ?? ''));
+    $phoneDial = preg_replace('/[^0-9+]/', '', $phone);
+    if (preg_match('/^[6-9]\d{9}$/', $phoneDial)) [$phone, $phoneDial] = ['+91 '.substr($phoneDial, 0, 5).' '.substr($phoneDial, 5), '+91'.$phoneDial];
+    $phoneHours = trim((string) ($siteSettings['contact_phone_hours'] ?? ''));
+    $emailNote = trim((string) ($siteSettings['contact_email_note'] ?? ''));
     $email = trim((string) ($siteSettings['contact_email'] ?? ''));
     $hours = trim((string) ($siteSettings['opening_hours'] ?? ''));
+    $isNote = fn (string $line) => (bool) preg_match('/^\(.*\)$/', $line);
+    $hourGroups = collect(preg_split('/\R/', $hours))->map(fn ($line) => trim($line))->filter()->values()
+        ->chunkWhile(fn ($line, $key, $chunk) => $isNote($line) === $isNote($chunk->last()));
     $hasDetails = $phone !== '' || $email !== '' || $hours !== '';
 @endphp
 <section class="kl-section kl-contact" id="contact-form">
@@ -83,7 +93,8 @@
                         <iframe title="KELIKA location map" src="{{ $mapUrl }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
                     @else
                         <span class="kl-contact__map-icon" aria-hidden="true">{!! \App\Support\Icon::svg('pin', 'kl-icon kl-icon--lg') !!}</span>
-                        <p class="kl-contact__map-text">{{ $address !== '' ? $address : 'Location details will be shared here soon. Contact our team for directions.' }}</p>
+                        {{-- The address itself is shown just below the map, so the placeholder does not repeat it. --}}
+                        @if ($address === '')<p class="kl-contact__map-text">Location details will be shared here soon. Contact our team for directions.</p>@endif
                         @if ($preview ?? false)
                             @include('public.partials.preview-note', ['message' => 'No map yet — add a Google Maps embed URL in Site Settings (or on the Location section) to show the map and Get Directions.'])
                         @endif
@@ -94,10 +105,10 @@
                     <div class="kl-contact__address">
                         @if ($address !== '')
                             <span class="kl-contact__address-icon" aria-hidden="true">{!! \App\Support\Icon::svg('pin', 'kl-icon') !!}</span>
-                            <p class="kl-contact__address-text">{!! nl2br(e($address)) !!}</p>
+                            <p class="kl-contact__address-text">@if ($addressLines->count() > 1)<strong class="kl-contact__address-name">{{ $addressLines->first() }}</strong><br>{!! $addressLines->slice(1)->map(fn ($line) => e($line))->implode('<br>') !!}@else{{ $addressLines->first() }}@endif</p>
                         @endif
                         @if ($directionsUrl)
-                            <a class="btn btn-kelika-outline" href="{{ $directionsUrl }}" target="_blank" rel="noopener noreferrer">Get Directions {!! \App\Support\Icon::svg('arrow-right', 'kl-icon kl-icon--sm') !!}</a>
+                            <a class="btn btn-kelika-outline kl-contact__directions" href="{{ $directionsUrl }}" target="_blank" rel="noopener noreferrer">Get Directions {!! \App\Support\Icon::svg('arrow-right', 'kl-icon kl-icon--sm') !!}</a>
                         @endif
                     </div>
                 @endif
@@ -105,13 +116,13 @@
                 @if ($hasDetails)
                     <ul class="kl-contact__details">
                         @if ($phone !== '')
-                            <li><span class="kl-contact__detail-icon" aria-hidden="true">{!! \App\Support\Icon::svg('phone', 'kl-icon') !!}</span><div><h3 class="kl-contact__detail-title">Call Us</h3><a href="tel:{{ preg_replace('/[^0-9+]/', '', $phone) }}">{{ $phone }}</a></div></li>
+                            <li><span class="kl-contact__detail-icon" aria-hidden="true">{!! \App\Support\Icon::svg('phone', 'kl-icon') !!}</span><div><h3 class="kl-contact__detail-title">Call Us</h3><a href="tel:{{ $phoneDial }}">{{ $phone }}</a>@if ($phoneHours !== '')<p class="kl-contact__detail-note">{!! nl2br(e($phoneHours)) !!}</p>@endif</div></li>
                         @endif
                         @if ($email !== '')
-                            <li><span class="kl-contact__detail-icon" aria-hidden="true">{!! \App\Support\Icon::svg('mail', 'kl-icon') !!}</span><div><h3 class="kl-contact__detail-title">Email Us</h3><a href="mailto:{{ $email }}">{{ $email }}</a></div></li>
+                            <li><span class="kl-contact__detail-icon" aria-hidden="true">{!! \App\Support\Icon::svg('mail', 'kl-icon') !!}</span><div><h3 class="kl-contact__detail-title">Email Us</h3><a href="mailto:{{ $email }}">{{ $email }}</a>@if ($emailNote !== '')<p class="kl-contact__detail-note">{!! nl2br(e($emailNote)) !!}</p>@endif</div></li>
                         @endif
                         @if ($hours !== '')
-                            <li><span class="kl-contact__detail-icon" aria-hidden="true">{!! \App\Support\Icon::svg('clock', 'kl-icon') !!}</span><div><h3 class="kl-contact__detail-title">Visit Hours</h3><p>{!! nl2br(e($hours)) !!}</p></div></li>
+                            <li><span class="kl-contact__detail-icon" aria-hidden="true">{!! \App\Support\Icon::svg('clock', 'kl-icon') !!}</span><div><h3 class="kl-contact__detail-title">Visit Hours</h3>@foreach ($hourGroups as $lines)<p{!! $isNote($lines->first()) ? ' class="kl-contact__detail-note"' : '' !!}>{!! $lines->map(fn ($line) => e($line))->implode('<br>') !!}</p>@endforeach</div></li>
                         @endif
                     </ul>
                 @endif

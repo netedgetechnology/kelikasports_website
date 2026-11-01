@@ -29,7 +29,7 @@ class SettingsAndUsersTest extends TestCase
             'site_name' => 'Test Academy', 'site_tagline' => 'A tagline', 'booking_button_label' => 'Book now', 'font_family' => 'Georgia', 'button_style' => 'soft',
             'logo_url' => '/images/logo.png', 'footer_logo_url' => '', 'mobile_logo_url' => '', 'favicon_url' => 'https://cdn.example.test/favicon.png', 'social_image_url' => '',
             'contact_phone' => '+00 0000 0000', 'contact_email' => 'hello@example.test', 'contact_notification_email' => 'office@example.test', 'contact_address' => 'Test address',
-            'opening_hours' => 'Test hours', 'map_url' => 'https://maps.example.test/x', 'booking_url' => 'https://book.example.test', 'instagram_url' => '', 'facebook_url' => '', 'youtube_url' => '', 'linkedin_url' => '',
+            'contact_phone_hours' => 'Daily', 'contact_email_note' => 'Replies in a day', 'opening_hours' => 'Test hours', 'map_url' => 'https://maps.example.test/x', 'booking_url' => 'https://book.example.test', 'instagram_url' => '', 'facebook_url' => '', 'youtube_url' => '', 'linkedin_url' => '',
         ];
     }
     /** The named fields of the rendered settings form with their current values, as a browser would submit them. */
@@ -61,6 +61,7 @@ class SettingsAndUsersTest extends TestCase
         $this->from(route('admin.settings.edit'))->put(route('admin.settings.update'), $this->validSettings())->assertRedirect(route('admin.settings.edit'))->assertSessionHas('success', 'Global settings saved.');
         $this->assertSame(['Test Academy', 'Georgia', '#123abc', 'office@example.test', 'https://book.example.test'], array_map(fn ($k) => Setting::read($k), ['site_name', 'font_family', 'primary_color', 'contact_notification_email', 'booking_url']));
         $this->assertSame(['general', 'branding', 'contact', 'social'], array_map(fn ($k) => Setting::where('key', $k)->value('group'), ['site_name', 'primary_color', 'map_url', 'instagram_url']));
+        $this->assertSame(['Daily', 'Replies in a day', 'contact', 'contact'], [Setting::read('contact_phone_hours'), Setting::read('contact_email_note'), Setting::where('key', 'contact_phone_hours')->value('group'), Setting::where('key', 'contact_email_note')->value('group')]);
         $this->assertNull(Setting::read('instagram_url'), 'an empty optional field is stored as empty');
         $this->assertFalse(Cache::has(PublicSiteData::CACHE_KEY));
     }

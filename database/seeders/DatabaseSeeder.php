@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
     {
         $settings = [
             'site_name'=>['KELIKA','general'], 'site_tagline'=>['Driven by the elements. Built for stronger athletes and a brighter tomorrow.','general'],
-            'contact_phone'=>['7874028876','contact'], 'contact_email'=>['','contact'], 'contact_notification_email'=>['','contact'], 'contact_address'=>['','contact'], 'opening_hours'=>['','contact'], 'map_url'=>['','contact'],
+            'contact_phone'=>['7874028876','contact'], 'contact_phone_hours'=>['','contact'], 'contact_email'=>['','contact'], 'contact_email_note'=>['','contact'], 'contact_notification_email'=>['','contact'], 'contact_address'=>['','contact'], 'opening_hours'=>['','contact'], 'map_url'=>['','contact'],
             'booking_url'=>['','general'], 'booking_button_label'=>['Book a Court','general'],
             'primary_color'=>['#064f43','branding'], 'terracotta_color'=>['#cf6d50','branding'], 'gold_color'=>['#d4a35d','branding'], 'font_family'=>['Inter','branding'], 'button_style'=>['square','branding'],
             'logo_url'=>['/images/kelika-wordmark.png','branding'], 'footer_logo_url'=>['/images/kelika-wordmark.png','branding'], 'mobile_logo_url'=>['/images/kelika-wordmark.png','branding'], 'favicon_url'=>['','branding'], 'social_image_url'=>['','branding'],
