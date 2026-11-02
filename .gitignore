@@ -1,6 +1,5 @@
 /vendor
 /node_modules
-/public/build
 /public/storage
 /.env
 /.phpunit.cache
@@ -25,7 +24,6 @@ Thumbs.db
 # Dependencies and generated files
 /vendor/
 /node_modules/
-/public/build/
 /public/storage
 /storage/framework/cache/data/*
 /storage/framework/sessions/*
