@@ -1,0 +1,471 @@
+/* KELIKA hero — uploaded reference design */
+.hero-redesign {
+    --hr-cream: #fffaf1;
+    --hr-green: #075447;
+    --hr-terracotta: #df7052;
+    --hr-gold: #dfa94f;
+    --hr-champagne: #f4e1bf;
+
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: calc(100vh - 78px) !important;
+    height: calc(100svh - 78px) !important;
+    min-height: calc(100vh - 78px) !important;
+    min-height: calc(100svh - 78px) !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    isolation: isolate;
+    background: var(--hr-cream) !important;
+    color: var(--hr-green) !important;
+}
+
+/* Let the image extend behind the text, with a soft ivory blend */
+.hero-redesign > .container-fluid {
+    position: relative !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.hero-redesign .row {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+}
+
+.hero-redesign .hero-visual {
+    position: absolute !important;
+    z-index: 1 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 35% !important;
+    width: 65% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: var(--hr-champagne) !important;
+}
+
+.hero-redesign .hero-visual picture {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+}
+
+.hero-redesign .hero-visual .hero-image {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    object-fit: cover !important;
+    object-position: center 35% !important;
+    clip-path: none !important;
+}
+
+/* Blend image into the ivory content area */
+.hero-redesign::after {
+    content: "" !important;
+    position: absolute !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 27% !important;
+    width: 27% !important;
+    background: linear-gradient(
+        90deg,
+        var(--hr-cream) 0%,
+        rgba(255,250,241,.96) 18%,
+        rgba(255,250,241,.72) 48%,
+        rgba(255,250,241,.12) 100%
+    ) !important;
+}
+
+/* Text panel */
+.hero-redesign .hero-copy {
+    position: relative !important;
+    z-index: 3 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 47% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 100% !important;
+    padding: 40px 20px 30px clamp(32px, 6vw, 100px) !important;
+    background: transparent !important;
+}
+
+.hero-redesign .eyebrow {
+    margin: 0 0 clamp(14px, 2vh, 23px) !important;
+    color: #667e75 !important;
+    font-size: clamp(10px, .85vw, 14px) !important;
+    line-height: 1.5 !important;
+    font-weight: 800 !important;
+    letter-spacing: .17em !important;
+}
+
+.hero-redesign .display-title {
+    margin: 0 !important;
+    color: var(--hr-green) !important;
+    font-size: clamp(52px, 5.7vw, 94px) !important;
+    line-height: .90 !important;
+    font-weight: 900 !important;
+    letter-spacing: -.055em !important;
+}
+
+.hero-redesign .display-title span {
+    display: block !important;
+    width: auto !important;
+    white-space: nowrap !important;
+}
+
+.hero-redesign .display-title span:nth-child(1) {
+    color: var(--hr-green) !important;
+}
+
+.hero-redesign .display-title span:nth-child(2) {
+    color: var(--hr-terracotta) !important;
+}
+
+.hero-redesign .display-title span:nth-child(3) {
+    color: var(--hr-gold) !important;
+}
+
+.hero-redesign .hero-copy .lead {
+    max-width: 500px !important;
+    margin: clamp(15px, 2vh, 24px) 0 !important;
+    color: #687a73 !important;
+    font-size: clamp(14px, 1.15vw, 19px) !important;
+    line-height: 1.55 !important;
+}
+
+.hero-redesign .hero-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+}
+
+.hero-redesign .hero-actions .btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    min-height: 48px !important;
+    padding: 13px 20px !important;
+    font-size: 11px !important;
+    font-weight: 850 !important;
+    letter-spacing: .07em !important;
+    white-space: nowrap !important;
+}
+
+.hero-redesign .hero-actions .btn-kelika {
+    color: #fff !important;
+    background: var(--hr-green) !important;
+    border-color: var(--hr-green) !important;
+}
+
+.hero-redesign .hero-actions .btn-kelika-outline {
+    color: var(--hr-green) !important;
+    background: rgba(255,250,241,.72) !important;
+    border: 1px solid var(--hr-green) !important;
+}
+
+/* Champagne message panel */
+.hero-redesign .hero-visual::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    z-index: 2 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    width: 23% !important;
+    height: 100% !important;
+    background: var(--hr-champagne) !important;
+    clip-path: none !important;
+    pointer-events: none !important;
+}
+
+.hero-redesign .hero-side-message {
+    position: absolute !important;
+    z-index: 4 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 23% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 24px 12px !important;
+    transform: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    color: var(--hr-green) !important;
+}
+
+.hero-redesign .hero-side-message > span {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    color: var(--hr-green) !important;
+    font-family: "Segoe Script", "Brush Script MT", cursive !important;
+    font-size: clamp(27px, 3.1vw, 51px) !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+    line-height: 1.05 !important;
+    letter-spacing: -.045em !important;
+}
+
+.hero-redesign .hero-side-values {
+    margin-top: 25px !important;
+    color: var(--hr-green) !important;
+    font-size: clamp(9px, .85vw, 13px) !important;
+    font-weight: 900 !important;
+    line-height: 2.8 !important;
+    letter-spacing: .16em !important;
+}
+
+.hero-redesign .hero-side-message > i {
+    display: block !important;
+    width: 48px !important;
+    height: 3px !important;
+    margin-top: 20px !important;
+    background: var(--hr-gold) !important;
+}
+
+/* Four feature highlights in one horizontal row */
+.hero-redesign .hero-features {
+    position: relative !important;
+    z-index: 5 !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 720px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    background: transparent !important;
+    transform: none !important;
+}
+
+.hero-redesign .hero-feature {
+    display: flex !important;
+    flex: 1 1 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 9px !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+    color: #17483f !important;
+    font-size: clamp(9px, .75vw, 12px) !important;
+    font-weight: 750 !important;
+    line-height: 1.4 !important;
+}
+
+.hero-redesign .hero-feature:first-child {
+    padding-left: 0 !important;
+    justify-content: flex-start !important;
+}
+
+.hero-redesign .hero-feature + .hero-feature {
+    border-left: 1px solid rgba(190,132,68,.65) !important;
+}
+
+.hero-redesign .hero-feature svg {
+    display: block !important;
+    flex: 0 0 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+    fill: none !important;
+    stroke: #b97d3c !important;
+    stroke-width: 1.7 !important;
+}
+
+/* Tablet and mobile: switch to a stacked, readable composition */
+@media (max-width: 991.98px) {
+    .hero-redesign {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .hero-redesign > .container-fluid {
+        height: auto !important;
+    }
+
+    .hero-redesign .row {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+    }
+
+    .hero-redesign::after {
+        content: none !important;
+        display: none !important;
+    }
+
+    .hero-redesign .hero-copy {
+        order: 1 !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 38px 28px 26px !important;
+        background: var(--hr-cream) !important;
+    }
+
+    .hero-redesign .display-title {
+        font-size: clamp(48px, 9vw, 72px) !important;
+    }
+
+    .hero-redesign .hero-copy .lead {
+        max-width: 580px !important;
+    }
+
+    .hero-redesign .hero-visual {
+        position: relative !important;
+        inset: auto !important;
+        order: 2 !important;
+        width: 100% !important;
+        height: clamp(360px, 65vw, 520px) !important;
+        min-height: 360px !important;
+        flex: none !important;
+    }
+
+    .hero-redesign .hero-visual::after,
+    .hero-redesign .hero-side-message {
+        width: 25% !important;
+    }
+
+    .hero-redesign .hero-side-message {
+        padding: 14px 7px !important;
+    }
+
+    .hero-redesign .hero-side-message > span {
+        font-size: clamp(21px, 4vw, 34px) !important;
+    }
+
+    .hero-redesign .hero-side-values {
+        margin-top: 15px !important;
+        font-size: 9px !important;
+        line-height: 2.3 !important;
+    }
+
+    .hero-redesign .hero-features {
+        position: relative !important;
+        order: 3 !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        max-width: none !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 18px 10px !important;
+        padding: 22px 28px 28px !important;
+        background: var(--hr-cream) !important;
+    }
+
+    .hero-redesign .hero-feature {
+        justify-content: flex-start !important;
+        padding: 0 !important;
+        border-left: 0 !important;
+        font-size: 11px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-redesign .hero-copy {
+        padding: 30px 21px 24px !important;
+    }
+
+    .hero-redesign .eyebrow {
+        font-size: 9px !important;
+        letter-spacing: .12em !important;
+    }
+
+    .hero-redesign .display-title {
+        font-size: clamp(43px, 11.4vw, 61px) !important;
+    }
+
+    .hero-redesign .hero-copy .lead {
+        font-size: 14px !important;
+    }
+
+    .hero-redesign .hero-actions {
+        gap: 8px !important;
+    }
+
+    .hero-redesign .hero-actions .btn {
+        min-height: 44px !important;
+        padding: 10px 12px !important;
+        font-size: 9px !important;
+    }
+
+    .hero-redesign .hero-visual {
+        height: 350px !important;
+        min-height: 350px !important;
+    }
+
+    .hero-redesign .hero-visual::after,
+    .hero-redesign .hero-side-message {
+        width: 29% !important;
+    }
+
+    .hero-redesign .hero-side-message {
+        padding: 10px 4px !important;
+    }
+
+    .hero-redesign .hero-side-message > span {
+        font-size: clamp(17px, 5vw, 24px) !important;
+    }
+
+    .hero-redesign .hero-side-values {
+        margin-top: 12px !important;
+        font-size: 7px !important;
+        letter-spacing: .08em !important;
+    }
+
+    .hero-redesign .hero-features {
+        padding: 18px 21px 24px !important;
+        gap: 16px 8px !important;
+    }
+
+    .hero-redesign .hero-feature {
+        gap: 7px !important;
+        font-size: 10px !important;
+    }
+
+    .hero-redesign .hero-feature svg {
+        flex-basis: 23px !important;
+        width: 23px !important;
+        height: 23px !important;
+    }
+}

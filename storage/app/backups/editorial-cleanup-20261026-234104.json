@@ -1,0 +1,270 @@
+{
+    "taken_at": "2026-10-26T23:41:03+05:30",
+    "page_sections": {
+        "12": {
+            "page_id": 2,
+            "type": "split",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "COACHING THAT CONNECTS",
+                "title": "SUPPORTIVE COACHING.|MEANINGFUL PROGRESS.",
+                "body": "Programs should be adapted to each athlete’s age, experience, goals and readiness. Confirm coach credentials and program availability before publication.",
+                "button_label": "View Programs",
+                "button_url": "/programs"
+            }
+        },
+        "22": {
+            "page_id": 4,
+            "type": "split",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "KIDS PROGRAM · AGES 5–12",
+                "title": "BUILD A LOVE|FOR THE GAME",
+                "body": "A safe and engaging environment can help children develop fundamental skills, fitness, confidence and a lifelong love for sports. Confirm the final age ranges and program availability before publication.",
+                "button_label": "Enquire About Programs",
+                "button_url": "/contact"
+            }
+        },
+        "26": {
+            "page_id": 5,
+            "type": "hero",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "OUR FACILITIES",
+                "image": "https://images.unsplash.com/photo-1775993167284-8e6a6e56ab69?auto=format&fit=crop&w=1800&q=85",
+                "image_alt": "Indoor badminton sports hall with blue courts",
+                "image_position": "center",
+                "title": "World-class Facilities|for Every Athlete",
+                "subtitle": "Train, play and grow in a modern, safe and inspiring environment. Final facility details will be confirmed before launch.",
+                "button_label": "Explore Facilities",
+                "button_url": "#facility-list",
+                "secondary_button_label": "Book a Court",
+                "secondary_button_url": ""
+            }
+        },
+        "36": {
+            "page_id": 7,
+            "type": "hero",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "ABOUT KELIKA",
+                "image": "https://images.unsplash.com/photo-1722087642932-9b070e9a066e?auto=format&fit=crop&w=1800&q=85",
+                "image_alt": "Badminton player in action representing focus and determination",
+                "image_position": "center",
+                "title": "Driven by the Elements.|Built for a Brighter Tomorrow.",
+                "subtitle": "KELIKA is a sports academy concept focused on developing athletes through coaching, community and a holistic approach to growth. Confirm all operational claims before launch.",
+                "button_label": "Our Story",
+                "button_url": "#our-story"
+            }
+        },
+        "27": {
+            "page_id": 5,
+            "type": "split",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "MAIN ATTRACTION",
+                "title": "PROFESSIONAL|BADMINTON COURTS",
+                "body": "Showcase verified information about court surfaces, lighting, equipment and availability. Do not publish certification or capacity claims unless confirmed.",
+                "button_label": "Book a Court",
+                "button_url": ""
+            }
+        },
+        "28": {
+            "page_id": 5,
+            "type": "facilities_showcase",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "BEYOND THE COURTS",
+                "title": "MODERN AMENITIES|FOR A COMPLETE EXPERIENCE",
+                "subtitle": "Add only amenities that are available at the KELIKA facility."
+            }
+        },
+        "38": {
+            "page_id": 7,
+            "type": "split",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "OUR STORY",
+                "title": "A PASSION FOR SPORTS.|A VISION FOR THE FUTURE.",
+                "body": "Tell the approved KELIKA story here. Replace this draft narrative with the founder-approved history before publishing."
+            }
+        }
+    },
+    "content_items": {
+        "1": {
+            "type": "sport",
+            "title": "Badminton",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1780233689566-55045608bd17?auto=format&fit=crop&w=1200&q=82",
+                "image_alt": "Badminton players practicing on an indoor court",
+                "eyebrow": "FEATURED SPORT",
+                "tagline": "SKILL. SPEED. STRATEGY.",
+                "description": "Badminton can help players build agility, fitness, confidence and game understanding. Confirm the final program details and availability before publishing.",
+                "features": [
+                    {
+                        "title": "For All Ages",
+                        "description": "Confirm age groups and entry levels.",
+                        "icon": "♧"
+                    },
+                    {
+                        "title": "Expert Coaching",
+                        "description": "Add verified coaching information.",
+                        "icon": "◎"
+                    },
+                    {
+                        "title": "Training Programs",
+                        "description": "Add available training pathways.",
+                        "icon": "▦"
+                    },
+                    {
+                        "title": "Tournaments",
+                        "description": "List confirmed events only.",
+                        "icon": "♜"
+                    }
+                ]
+            }
+        },
+        "2": {
+            "type": "sport",
+            "title": "Football",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=82",
+                "image_alt": "Football players training on a field",
+                "eyebrow": "OUR SPORT",
+                "tagline": "TEAMWORK. FITNESS. GROWTH.",
+                "description": "Football training may focus on skill development, fitness, tactical understanding and teamwork. Confirm program availability before publishing.",
+                "features": [
+                    {
+                        "title": "Skill Development",
+                        "description": "Technique and game understanding.",
+                        "icon": "↗"
+                    },
+                    {
+                        "title": "Fitness & Conditioning",
+                        "description": "Speed, agility and endurance.",
+                        "icon": "↗"
+                    },
+                    {
+                        "title": "Team Training",
+                        "description": "Only if team sessions are offered.",
+                        "icon": "♧"
+                    },
+                    {
+                        "title": "Match Exposure",
+                        "description": "Confirm match opportunities.",
+                        "icon": "♜"
+                    }
+                ]
+            }
+        },
+        "3": {
+            "type": "sport",
+            "title": "Cricket",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1200&q=82",
+                "image_alt": "Cricket equipment and field",
+                "eyebrow": "OUR SPORT",
+                "tagline": "FOCUS. TECHNIQUE. PERFORMANCE.",
+                "description": "Cricket training may cover core skills, technique, match awareness and fitness. Confirm program availability before publishing.",
+                "features": [
+                    {
+                        "title": "Batting & Bowling",
+                        "description": "Confirm coaching coverage.",
+                        "icon": "↗"
+                    },
+                    {
+                        "title": "Game Strategy",
+                        "description": "Tactical understanding.",
+                        "icon": "◎"
+                    },
+                    {
+                        "title": "Fitness Training",
+                        "description": "Strength and agility.",
+                        "icon": "↗"
+                    },
+                    {
+                        "title": "Match Practice",
+                        "description": "Confirm available sessions.",
+                        "icon": "♜"
+                    }
+                ]
+            }
+        },
+        "4": {
+            "type": "program",
+            "title": "Kids Program",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1779608103749-395f76f42f94?auto=format&fit=crop&w=1000&q=80",
+                "image_alt": "Child taking part in a badminton session",
+                "age_range": "Ages 5–12",
+                "description": "Confirm age range, program schedule and availability before publishing."
+            }
+        },
+        "5": {
+            "type": "program",
+            "title": "Youth Development",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1774652995555-59fa40d9306c?auto=format&fit=crop&w=1000&q=80",
+                "image_alt": "Young athlete practicing badminton",
+                "age_range": "Ages 13–18",
+                "description": "Confirm age range, program schedule and availability before publishing."
+            }
+        },
+        "6": {
+            "type": "program",
+            "title": "Performance Training",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1722087642932-9b070e9a066e?auto=format&fit=crop&w=1000&q=80",
+                "image_alt": "Badminton player training for performance",
+                "description": "Confirm eligibility, coaching structure and availability before publishing."
+            }
+        },
+        "7": {
+            "type": "program",
+            "title": "Adult Coaching",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1774652995555-59fa40d9306c?auto=format&fit=crop&w=1000&q=80",
+                "image_alt": "Adult badminton player training",
+                "age_range": "18+",
+                "description": "Confirm age range, program schedule and availability before publishing."
+            }
+        },
+        "8": {
+            "type": "facility",
+            "title": "Professional Badminton Courts",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1775993167284-8e6a6e56ab69?auto=format&fit=crop&w=1200&q=82",
+                "image_alt": "Indoor badminton courts with blue flooring",
+                "description": "Confirm court count, flooring, lighting, and operating availability before publishing."
+            }
+        },
+        "9": {
+            "type": "facility",
+            "title": "Player Lounge",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1770085057829-97e7a45e1916?auto=format&fit=crop&w=1200&q=82",
+                "image_alt": "Modern sports facility interior",
+                "description": "Confirm whether this amenity is available at the facility."
+            }
+        },
+        "10": {
+            "type": "facility",
+            "title": "Changing Rooms",
+            "status": "published",
+            "data": {
+                "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=82",
+                "image_alt": "Clean modern changing and washroom facilities",
+                "description": "Confirm amenity availability before publishing."
+            }
+        }
+    }
+}

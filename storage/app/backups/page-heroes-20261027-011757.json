@@ -1,0 +1,120 @@
+{
+    "taken_at": "2026-10-27T01:17:57+05:30",
+    "page_sections": {
+        "9": {
+            "page_id": 2,
+            "type": "hero",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "KELIKA ACADEMY",
+                "image": "https://images.unsplash.com/photo-1779608103749-395f76f42f94?auto=format&fit=crop&w=1800&q=85",
+                "image_alt": "Adults and a child sharing a badminton session",
+                "image_position": "center",
+                "title": "Build Skills.|Build Character.",
+                "subtitle": "A structured, supportive sports environment where athletes can learn, improve and grow at every stage.",
+                "button_label": "Explore Programs",
+                "button_url": "/programs",
+                "secondary_button_label": "Contact Us",
+                "secondary_button_url": "/contact"
+            }
+        },
+        "15": {
+            "page_id": 3,
+            "type": "hero",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "OUR SPORTS",
+                "image": "https://images.unsplash.com/photo-1780233689566-55045608bd17?auto=format&fit=crop&w=1800&q=85",
+                "image_alt": "Badminton players seen through a racket on an indoor court",
+                "image_position": "center",
+                "title": "Different Sports.|Stronger Individuals.",
+                "subtitle": "At KELIKA, explore sports and training pathways designed to help athletes of all ages build skills, fitness and confidence.",
+                "button_label": "Explore Our Sports",
+                "button_url": "#sports-list"
+            }
+        },
+        "20": {
+            "page_id": 4,
+            "type": "hero",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "PROGRAMS",
+                "image": "https://images.unsplash.com/photo-1774652995555-59fa40d9306c?auto=format&fit=crop&w=1800&q=85",
+                "image_alt": "Athlete practicing badminton on an indoor court",
+                "image_position": "center",
+                "title": "Structured Programs|for Every Stage",
+                "subtitle": "From first steps to competitive development, programs are designed to build skills, confidence, fitness and character.",
+                "button_label": "Explore Programs",
+                "button_url": "#program-list",
+                "secondary_button_label": "Contact Us",
+                "secondary_button_url": "/contact"
+            }
+        },
+        "26": {
+            "page_id": 5,
+            "type": "hero",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "OUR FACILITIES",
+                "image": "https://images.unsplash.com/photo-1775993167284-8e6a6e56ab69?auto=format&fit=crop&w=1800&q=85",
+                "image_alt": "Indoor badminton sports hall with blue courts",
+                "image_position": "center",
+                "title": "World-class Facilities|for Every Athlete",
+                "subtitle": "Train, play and grow in a modern, safe and inspiring environment.",
+                "button_label": "Explore Facilities",
+                "button_url": "#facility-list",
+                "secondary_button_label": "Book a Court",
+                "secondary_button_url": ""
+            }
+        },
+        "31": {
+            "page_id": 6,
+            "type": "hero",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "EVENTS",
+                "image": "https://images.unsplash.com/photo-1783266503722-973f579d9b5a?auto=format&fit=crop&w=1800&q=85",
+                "image_alt": "Players on a blue indoor badminton court",
+                "image_position": "center",
+                "title": "Tournaments, Camps|& Community Events",
+                "subtitle": "Events can help players learn, compete and connect. Check the latest confirmed schedule here.",
+                "button_label": "Explore Events",
+                "button_url": "#upcoming-events",
+                "secondary_button_label": "Contact Us",
+                "secondary_button_url": "/contact"
+            }
+        },
+        "36": {
+            "page_id": 7,
+            "type": "hero",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "ABOUT KELIKA",
+                "image": "https://images.unsplash.com/photo-1722087642932-9b070e9a066e?auto=format&fit=crop&w=1800&q=85",
+                "image_alt": "Badminton player in action representing focus and determination",
+                "image_position": "center",
+                "title": "Driven by the Elements.|Built for a Brighter Tomorrow.",
+                "subtitle": "KELIKA is a sports academy concept focused on developing athletes through coaching, community and a holistic approach to growth.",
+                "button_label": "Our Story",
+                "button_url": "#our-story"
+            }
+        },
+        "42": {
+            "page_id": 8,
+            "type": "hero",
+            "is_visible": true,
+            "data": {
+                "eyebrow": "CONTACT US",
+                "image": "https://images.unsplash.com/photo-1775993167284-8e6a6e56ab69?auto=format&fit=crop&w=1800&q=85",
+                "image_alt": "Indoor badminton court ready for players",
+                "image_position": "center",
+                "title": "Let’s Build a|Stronger Sports Community.",
+                "subtitle": "We would love to hear from you. Ask about programs, events, court booking links or learning more about KELIKA.",
+                "button_label": "Send Us a Message",
+                "button_url": "#contact-form",
+                "secondary_button_label": "Explore Sports",
+                "secondary_button_url": "/sports"
+            }
+        }
+    }
+}

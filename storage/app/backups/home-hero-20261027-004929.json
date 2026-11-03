@@ -1,0 +1,43 @@
+{
+    "taken_at": "2026-10-27T00:49:29+05:30",
+    "page_section_1": {
+        "page_id": 1,
+        "type": "hero",
+        "is_visible": true,
+        "data": {
+            "eyebrow": "DISCIPLINE  |  HEALTH  |  COMMUNITY",
+            "image": "media/2026/10/fa690eb1-64d0-402a-b25d-98e70c2c4041.jpg",
+            "image_alt": "Badminton player in a green shirt leaping for an overhead shot on an indoor court",
+            "image_position": "44% center",
+            "title": "PLAY|GROW|BELONG.",
+            "subtitle": "World-class badminton training, modern facilities and a vibrant sports community for all ages.",
+            "button_label": "Join Academy",
+            "button_url": "/academy",
+            "secondary_button_label": "Book a Court",
+            "secondary_button_url": "",
+            "tone": "light",
+            "mobile_image": "media/2026/10/fa690eb1-64d0-402a-b25d-98e70c2c4041.jpg",
+            "body": "",
+            "script_text": "More|Than|A Sport",
+            "values_text": "TRAIN|COMPETE|GROW|BELONG",
+            "items": [
+                {
+                    "title": "Professional|Coaching",
+                    "icon": "coach"
+                },
+                {
+                    "title": "World-class|Facilities",
+                    "icon": "court"
+                },
+                {
+                    "title": "Programs|for All Ages",
+                    "icon": "users"
+                },
+                {
+                    "title": "Tournaments|& Events",
+                    "icon": "trophy"
+                }
+            ]
+        }
+    }
+}

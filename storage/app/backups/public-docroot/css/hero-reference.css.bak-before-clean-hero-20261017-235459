@@ -1,0 +1,467 @@
+/* KELIKA — Option 1: The Signature Athlete
+   Self-contained hero layout. Existing navigation and CMS remain unchanged. */
+
+.hero-reference {
+    --hero-paper: #fffdf8;
+    --hero-cream: #f8f0e3;
+    --hero-green: #064d40;
+    --hero-deep: #033d34;
+    --hero-gold: #dca951;
+    --hero-terracotta: #d96f50;
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    background: var(--hero-paper) !important;
+    color: var(--hero-deep) !important;
+}
+
+.hero-reference,
+.hero-reference * {
+    box-sizing: border-box;
+}
+
+.hero-reference > .container-fluid {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.hero-reference .row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 43%) minmax(0, 57%) !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    height: calc(100vh - 74px) !important;
+    height: calc(100svh - 74px) !important;
+    min-height: 560px !important;
+    max-height: 820px !important;
+    margin: 0 !important;
+    position: relative !important;
+}
+
+.hero-reference .hero-copy {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    padding: 38px 26px 28px clamp(28px, 5.2vw, 88px) !important;
+    position: relative !important;
+    z-index: 5 !important;
+    background: var(--hero-paper) !important;
+}
+
+.hero-reference .eyebrow {
+    margin: 0 0 clamp(16px, 2.2vh, 25px) !important;
+    color: #65766e !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    letter-spacing: .22em !important;
+    font-weight: 800 !important;
+}
+
+.hero-reference .display-title {
+    margin: 0 !important;
+    color: var(--hero-green) !important;
+    font-size: clamp(48px, 5.05vw, 78px) !important;
+    font-weight: 900 !important;
+    line-height: .91 !important;
+    letter-spacing: -.065em !important;
+}
+
+.hero-reference .display-title span {
+    display: block !important;
+    white-space: nowrap !important;
+}
+
+.hero-reference .display-title .accent-terracotta {
+    color: var(--hero-terracotta) !important;
+}
+
+.hero-reference .display-title .accent-gold {
+    color: var(--hero-gold) !important;
+}
+
+.hero-reference .hero-copy .lead {
+    width: 100% !important;
+    max-width: 450px !important;
+    margin: clamp(16px, 2.4vh, 24px) 0 20px !important;
+    color: #5c6b66 !important;
+    font-size: clamp(14px, 1.05vw, 16px) !important;
+    line-height: 1.6 !important;
+}
+
+.hero-reference .hero-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+}
+
+.hero-reference .hero-actions .btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    min-height: 46px !important;
+    margin: 0 !important;
+    padding: 12px 18px !important;
+    border-radius: 2px !important;
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+    font-weight: 800 !important;
+    letter-spacing: .035em !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+}
+
+.hero-reference .hero-actions .btn-kelika {
+    color: #fff !important;
+    background: var(--hero-green) !important;
+    border: 1px solid var(--hero-green) !important;
+}
+
+.hero-reference .hero-actions .btn-kelika-outline {
+    color: var(--hero-green) !important;
+    background: transparent !important;
+    border: 1px solid #9aafa5 !important;
+}
+
+.hero-reference .hero-features {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    align-items: center !important;
+    width: min(590px, calc(100% + 4vw)) !important;
+    max-width: none !important;
+    gap: 0 !important;
+    margin: auto 0 0 !important;
+    padding: clamp(24px, 4vh, 42px) 0 2px !important;
+    position: relative !important;
+    z-index: 6 !important;
+}
+
+.hero-reference .hero-feature {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    min-width: 0 !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 9px !important;
+    border-right: 1px solid #e8dfd1 !important;
+    color: #183d34 !important;
+}
+
+.hero-reference .hero-feature:first-child {
+    padding-left: 0 !important;
+}
+
+.hero-reference .hero-feature:last-child {
+    border-right: 0 !important;
+}
+
+.hero-reference .hero-feature svg {
+    display: block !important;
+    flex: 0 0 25px !important;
+    width: 25px !important;
+    height: 25px !important;
+    max-width: 25px !important;
+    margin: 0 !important;
+    fill: none !important;
+    stroke: #36564b !important;
+    stroke-width: 1.6 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+}
+
+.hero-reference .hero-feature span {
+    display: block !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    color: #183d34 !important;
+    font-size: 10px !important;
+    line-height: 1.35 !important;
+    font-weight: 750 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+}
+
+.hero-reference .hero-visual {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    position: relative !important;
+    isolation: isolate !important;
+    overflow: hidden !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--hero-cream) !important;
+}
+
+.hero-reference .hero-visual picture {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+}
+
+.hero-reference .hero-visual .hero-image {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    object-fit: cover !important;
+    object-position: center 30% !important;
+    clip-path: polygon(8% 0, 100% 0, 84% 100%, 0 100%) !important;
+    background: #e6e9e3 !important;
+}
+
+/* Cream and gold diagonal framing, kept clear of the athlete's main area. */
+.hero-reference .hero-visual::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    background: linear-gradient(
+        108deg,
+        transparent 0 5%,
+        var(--hero-paper) 5% 8%,
+        var(--hero-gold) 8% 9%,
+        var(--hero-cream) 9% 12%,
+        transparent 12% 100%
+    ) !important;
+}
+
+/* Deep-green signature panel at the far right. */
+.hero-reference .hero-visual::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 0 0 auto !important;
+    width: 24% !important;
+    z-index: 3 !important;
+    pointer-events: none !important;
+    background: var(--hero-green) !important;
+    clip-path: polygon(27% 0, 100% 0, 100% 100%, 0 100%) !important;
+}
+
+.hero-reference .hero-side-message {
+    position: absolute !important;
+    top: 50% !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: 22% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 18px 10px !important;
+    transform: translateY(-50%) !important;
+    z-index: 4 !important;
+    color: #fffdf8 !important;
+    text-align: center !important;
+}
+
+.hero-reference .hero-side-message > span {
+    display: block !important;
+    margin: 0 auto 18px !important;
+    color: #fffdf8 !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: clamp(25px, 2.5vw, 40px) !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+    line-height: 1.03 !important;
+    letter-spacing: -.045em !important;
+}
+
+.hero-reference .hero-side-values {
+    color: #fffdf8 !important;
+    font-size: 10px !important;
+    font-weight: 850 !important;
+    line-height: 2.15 !important;
+    letter-spacing: .12em !important;
+}
+
+.hero-reference .hero-side-message i {
+    display: block !important;
+    width: 34px !important;
+    height: 2px !important;
+    margin: 17px auto 0 !important;
+    background: var(--hero-gold) !important;
+}
+
+/* Tablet: preserve the composition with a smaller, balanced layout. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    .hero-reference .row {
+        grid-template-columns: minmax(0, 45%) minmax(0, 55%) !important;
+        min-height: 560px !important;
+    }
+
+    .hero-reference .hero-copy {
+        padding-left: 30px !important;
+        padding-right: 16px !important;
+    }
+
+    .hero-reference .display-title {
+        font-size: clamp(46px, 5.4vw, 64px) !important;
+    }
+
+    .hero-reference .hero-features {
+        width: 100% !important;
+    }
+
+    .hero-reference .hero-feature {
+        gap: 5px !important;
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+    }
+
+    .hero-reference .hero-feature svg {
+        flex-basis: 20px !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .hero-reference .hero-feature span {
+        font-size: 9px !important;
+    }
+}
+
+/* Mobile: stack content naturally; never crop the message or buttons. */
+@media (max-width: 767.98px) {
+    .hero-reference {
+        overflow: hidden !important;
+    }
+
+    .hero-reference .row {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+    }
+
+    .hero-reference .hero-copy {
+        display: flex !important;
+        order: 1 !important;
+        padding: 34px 22px 22px !important;
+    }
+
+    .hero-reference .eyebrow {
+        font-size: 10px !important;
+        letter-spacing: .17em !important;
+        margin-bottom: 16px !important;
+    }
+
+    .hero-reference .display-title {
+        font-size: clamp(48px, 12vw, 68px) !important;
+        line-height: .92 !important;
+    }
+
+    .hero-reference .hero-copy .lead {
+        max-width: 460px !important;
+        margin: 17px 0 19px !important;
+        font-size: 14px !important;
+    }
+
+    .hero-reference .hero-actions {
+        gap: 9px !important;
+    }
+
+    .hero-reference .hero-actions .btn {
+        min-height: 43px !important;
+        padding: 11px 13px !important;
+        font-size: 10px !important;
+    }
+
+    .hero-reference .hero-features {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        width: 100% !important;
+        gap: 17px 0 !important;
+        margin-top: 26px !important;
+        padding: 8px 0 4px !important;
+    }
+
+    .hero-reference .hero-feature {
+        padding: 0 8px !important;
+        border-right: 0 !important;
+    }
+
+    .hero-reference .hero-feature:nth-child(odd) {
+        padding-left: 0 !important;
+    }
+
+    .hero-reference .hero-feature svg {
+        flex-basis: 24px !important;
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .hero-reference .hero-feature span {
+        font-size: 10px !important;
+    }
+
+    .hero-reference .hero-visual {
+        order: 2 !important;
+        width: 100% !important;
+        height: clamp(300px, 82vw, 440px) !important;
+        min-height: 0 !important;
+        flex: none !important;
+    }
+
+    .hero-reference .hero-visual .hero-image {
+        object-position: center 30% !important;
+        clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%) !important;
+    }
+
+    .hero-reference .hero-visual::before {
+        background: linear-gradient(
+            108deg,
+            transparent 0 2%,
+            var(--hero-paper) 2% 5%,
+            var(--hero-gold) 5% 6%,
+            var(--hero-cream) 6% 9%,
+            transparent 9% 100%
+        ) !important;
+    }
+
+    .hero-reference .hero-visual::after {
+        width: 25% !important;
+    }
+
+    .hero-reference .hero-side-message {
+        width: 24% !important;
+        padding: 10px 4px !important;
+    }
+
+    .hero-reference .hero-side-message > span {
+        font-size: clamp(18px, 5.5vw, 27px) !important;
+        margin-bottom: 10px !important;
+    }
+
+    .hero-reference .hero-side-values {
+        font-size: 8px !important;
+        line-height: 2 !important;
+        letter-spacing: .08em !important;
+    }
+
+    .hero-reference .hero-side-message i {
+        margin-top: 10px !important;
+    }
+}
